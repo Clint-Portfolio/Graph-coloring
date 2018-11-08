@@ -6,7 +6,6 @@
 import sys
 from nodes_test import Node
 
-country = []
 neighborcount = 0
 countrylist = []
 transmitter_list = ["A", "B", "C", "D", "E"]
@@ -72,22 +71,31 @@ else:
 
 
 # find node with most neighbors
+most_neighbored_countries = []
 for node in countrylist:
     if len(node.neighbors) > neighborcount:
-        country = countrylist.index(node)
+        # most_neighbored_countries.append(countrylist.index(node))
         neighborcount = len(node.neighbors)
 
+for node in countrylist:
+    if len(node.neighbors) == neighborcount:
+        most_neighbored_countries.append(node.name)
+
 # country with most neighbors gets the least used color
-countrylist[country].trans_type = transmitter_list[-1]
+for node in most_neighbored_countries:
+    countrylist[node].changetype(transmitter_list[::-1], countrylist)
 
 # change color of country accordingly
 for node in countrylist:
     if node.trans_type == None:
         node.changetype(transmitter_list, countrylist)
 
-countrylist[country].changetype(transmitter_list, countrylist)
-print(" " + countrylist[-2].trans_type)
+# for node in most_neighbored_countries:
+#     countrylist[node].changetype(transmitter_list, countrylist)
+if graphtype in ["single", "double"]:
+    print(" " + countrylist[-2].trans_type)
 for node in countrylist[:-2]:
     print(node.trans_type, end = "")
-print()
-print("  " + countrylist[-1].trans_type)
+if graphtype == "double":
+    print()
+    print("  " + countrylist[-1].trans_type)

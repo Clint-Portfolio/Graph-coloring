@@ -6,29 +6,70 @@
 import sys
 from nodes_test import Node
 
-country = 0
+country = []
 neighborcount = 0
 countrylist = []
 transmitter_list = ["A", "B", "C", "D", "E"]
 
-# generate a simple graph of type
-#   0
-# / | \
-# 0-0-0-0-0-0.. etc.
-nr_of_nodes = 0
-while nr_of_nodes < 3:
-    nr_of_nodes = int(input("number of nodes: "))
-for i in range(0, nr_of_nodes):
-    if i == 0:
-        countrylist.append(Node(i, None, [1, nr_of_nodes]))
-    elif i <= 2:
-        countrylist.append(Node(i, None, [i - 1, i + 1, nr_of_nodes]))
-    elif i == nr_of_nodes - 1:
-        countrylist.append(Node(i, None, [i - 1]))
-    else:
-        countrylist.append(Node(i, None, [i - 1, i + 1]))
+graphtype = ""
+while graphtype not in ["simple", "single", "double"]:
+    print("Graphtype (simple, single, double)")
+    graphtype = input(" >").lower()
 
-countrylist.append(Node(len(countrylist), None, [0, 1, 2]))
+nr_of_nodes = 0
+while nr_of_nodes < 4:
+    nr_of_nodes = int(input("number of nodes (at least 4): "))
+
+if graphtype == "simple":
+    # generate a simple graph of type:
+    #  0-0-0-0-... etc.
+    for i in range(0, nr_of_nodes):
+        if i == 0:
+            countrylist.append(Node(i, None, [1]))
+        elif i == nr_of_nodes - 1:
+            countrylist.append(Node(i, None, [i - 1]))
+        else:
+            countrylist.append(Node(i, None, [i - 1, i + 1]))
+
+elif graphtype == "single":
+    # generate a single triple edge graph of type
+    #   0
+    # / | \
+    # 0-0-0-0-0-0-... etc.
+    for i in range(0, nr_of_nodes):
+        if i == 0:
+            countrylist.append(Node(i, None, [1, nr_of_nodes]))
+        elif i <= 2:
+            countrylist.append(Node(i, None, [i - 1, i + 1, nr_of_nodes]))
+        elif i == nr_of_nodes - 1:
+            countrylist.append(Node(i, None, [i - 1]))
+        else:
+            countrylist.append(Node(i, None, [i - 1, i + 1]))
+
+    countrylist.append(Node(len(countrylist), None, [0, 1, 2]))
+
+else:
+    # generate a double triple edge graph of type:
+    #   0
+    # / | \
+    # 0-0-0-0-0-0-... etc.
+    #   \ | /
+    #     0
+    for i in range(0, nr_of_nodes):
+        if i == 0:
+            countrylist.append(Node(i, None, [1, nr_of_nodes]))
+        elif i <= 2:
+            countrylist.append(Node(i, None, [i - 1, i + 1, nr_of_nodes, nr_of_nodes + 1]))
+        elif i == 3:
+            countrylist.append(Node(i, None, [i - 1, i + 1, nr_of_nodes]))
+        elif i == nr_of_nodes - 1:
+            countrylist.append(Node(i, None, [i - 1]))
+        else:
+            countrylist.append(Node(i, None, [i - 1, i + 1]))
+
+    countrylist.append(Node(len(countrylist), None, [0, 1, 2]))
+    countrylist.append(Node(len(countrylist), None, [1, 2, 3]))
+
 
 # find node with most neighbors
 for node in countrylist:
@@ -43,4 +84,10 @@ countrylist[country].trans_type = transmitter_list[-1]
 for node in countrylist:
     if node.trans_type == None:
         node.changetype(transmitter_list, countrylist)
+
+countrylist[country].changetype(transmitter_list, countrylist)
+print(" " + countrylist[-2].trans_type)
+for node in countrylist[:-2]:
     print(node.trans_type, end = "")
+print()
+print("  " + countrylist[-1].trans_type)

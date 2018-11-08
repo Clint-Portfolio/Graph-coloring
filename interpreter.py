@@ -14,9 +14,12 @@ if __name__ == "__main__":
 
         for i in lines:
             provinces = i.split(';')
+            province = provinces[-1].strip('/r/n')
             province_neigbours = i.split(',')
-            print(provinces)
-            print(province_neigbours)
+            province_neigbour = province_neigbours[-1].strip('/r/n')
+            print(province, end=(": "))
+            print(province_neigbour)
+
 
         #split
         #state_list = []

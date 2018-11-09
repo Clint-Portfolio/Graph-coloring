@@ -1,7 +1,7 @@
 # Name: Liora Rosenberg
 # Student number: 11036435
 """
-This script interprets an excel file and then outputs a list of provinces (list_provinces) and a list of neighbouring provinces (province_neigbour). 
+This script interprets an excel file and then outputs a list of provinces (list_provinces) and a list of neighbouring provinces (province_neigbour).
 """
 
 import csv
@@ -10,8 +10,7 @@ from bs4 import BeautifulSoup
 # import csv file
 INPUT_CSV = "buurlanden_NL.csv"
 
-if __name__ == "__main__":
-
+def provinces(INPUT_CSV):
     # open excel file
     with open(INPUT_CSV, newline='') as csvfile:
         lines = csvfile.readlines()
@@ -36,8 +35,5 @@ if __name__ == "__main__":
 
         print(list_provinces)
 
-
-
-
-# lijst maken van de provincies
-# lijst maken van province_neigbour
+if __name__ == "__main__":
+    provinces(INPUT_CSV)

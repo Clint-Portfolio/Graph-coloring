@@ -10,22 +10,37 @@ if __name__ == "__main__":
     with open(INPUT_CSV, newline='') as csvfile:
         #reader = csv.DictReader(csvfile)
         lines = csvfile.readlines()
-        print(lines[0])
+        #print(lines[0])
 
-        for i in lines:
-            provinces = i.split(';')
-            province = provinces[-1].strip('/r/n')
-            province_neigbours = i.split(',')
-            province_neigbour = province_neigbours[-1].strip('/r/n')
-            print(province, end=(": "))
+        #provinces = lines.split(';')
+        #province = provinces[-1].strip('/r/n')
+        #province_neigbours = lines.split(',')
+        #province_neigbour = province_neigbours[-1].strip('/r/n')
+
+        for line in lines:
+            split_list = line.split(';')
+            provinces = split_list[0].strip('/r/n')
+            print(provinces)
+
+            #province = provinces[line]
+            #print(province)
+            #print(province, end=(": "))
+            #print( )
+
+            province_neigbours = split_list[1]
+            #print(province_neigbours)
+            #province_neigbours_without_enters = province_neigbours[-1].strip('/r/n')
+            province_neigbour = province_neigbours.split(',')
+            #province_neigbour_without_enters = province_neigbour.strip('/r/n')
             print(province_neigbour)
 
+        #for j in range(len(lines)):
+        #    print(provinces[j])
+        #    print(province_neigbour[j])
 
-        #split
-        #state_list = []
+# lijst maken van de provincies
+# lijst maken van province_neigbour
 
-        #
-        #    state_list.append()
 
 
 # pak het eerste item van de csv

@@ -31,8 +31,10 @@ if __name__ == "__main__":
             #print(province_neigbours)
             #province_neigbours_without_enters = province_neigbours[-1].strip('/r/n')
             province_neigbour = province_neigbours.split(',')
-            #province_neigbour_without_enters = province_neigbour.strip('/r/n')
+
+            province_neigbour[-1] = province_neigbour[-1].strip('/r/n')
             print(province_neigbour)
+            #print(type(province_neigbour))
 
         #for j in range(len(lines)):
         #    print(provinces[j])

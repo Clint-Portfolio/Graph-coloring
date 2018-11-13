@@ -8,11 +8,12 @@ def provinces(INPUT_CSV):
         #print(lines[0])
 
         list_provinces = []
-
+        list_neighbors = []
         # loop over lines to get (neighboring) provinces
         for line in lines:
             split_list = line.split(';')
             provinces = split_list[0].strip('/r/n')
+            #print(type(provinces))
 
             # The provinces were strings and I put it in a list
             list_provinces.append(provinces)
@@ -21,8 +22,9 @@ def provinces(INPUT_CSV):
             province_neigbour = province_neigbours.split(',')
 
             province_neigbour[-1] = province_neigbour[-1].rstrip()
+            list_neighbors.append(province_neigbour)
 
-        return(list_provinces)
+        return(list_provinces, list_neighbors)
 
 
 def land_naar_nummer(provincies, buurlanden_nl):
@@ -52,7 +54,7 @@ def land_naar_nummer(provincies, buurlanden_nl):
     # dat de laatste provinsie ook toegevoegd wordt
     buurlanden_cijfers.append(buurland_provincie)
 
-    return(buurland_provincie)
+    return(buurlanden_cijfers)
 
 
 class Node(object):

@@ -11,9 +11,16 @@ from bs4 import BeautifulSoup
 from helpers import provinces
 from helpers import land_naar_nummer
 
-print(land_naar_nummer(buurland_provincie))
-#search root of the graph and add to queue + # begin bij de meest linker van het rijtje van provincies
+nummers = land_naar_nummer(provinces, "buurlanden_NL.csv")
+province_list = (provinces("buurlanden_NL.csv"))[0]
+#print(province_list)
 
+list_neighbors = (provinces("buurlanden_NL.csv"))[1]
+#print(list_neighbors)
+
+#search root of the graph and add to queue + # begin bij de meest linker van het rijtje van provincies
+left_provinces = province_list[0]
+#print(province_list[0])
 
 #if there is a node:
 	#if there is a solution: stop searching and give a solution

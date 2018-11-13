@@ -6,15 +6,14 @@ This script interprets an excel file and then outputs a list of provinces (list_
 
 import csv
 from bs4 import BeautifulSoup
-#import functie from documentnaam
 
+#import functie from documentnaam
 from helpers import provinces
 from helpers import land_naar_nummer
-#import provinces from helpers
-#import land_naar_nummer from helpers
 
 print(buurland_provincie)
-#search root of the graph and add to queue + # begin bij de meest linker van het rijtje
+#search root of the graph and add to queue + # begin bij de meest linker van het rijtje van provincies
+
 
 #if there is a node:
 	#if there is a solution: stop searching and give a solution

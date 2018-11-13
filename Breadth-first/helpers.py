@@ -24,7 +24,7 @@ def provinces(INPUT_CSV):
             province_neigbour[-1] = province_neigbour[-1].rstrip()
             list_neighbors.append(province_neigbour)
 
-        return(list_provinces, list_neighbors)
+        return [list_provinces, list_neighbors]
 
 
 def land_naar_nummer(provincies, buurlanden_nl):

@@ -11,7 +11,7 @@ c) It is cheaper to have fewer transmitter types, but also to have approximately
 
 ### Assignment 2
 There are four possible cost schemes. For each country, see which cost scheme is the most advantageous
-![Alt Text] (https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
+![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
 
 # Getting Started:
 ## Prerequisites:

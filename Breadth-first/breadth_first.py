@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from helpers import provinces
 from helpers import land_naar_nummer
 
-print(buurland_provincie)
+print(land_naar_nummer(buurland_provincie))
 #search root of the graph and add to queue + # begin bij de meest linker van het rijtje van provincies
 
 

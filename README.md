@@ -1,8 +1,6 @@
 # Radio Russia
 
-`The Project:
-
-Hier staat een korte beschrijving van het probleem evt. met plaatje.`
+The Project:
 
 # Getting Started:
 Prerequisites:
@@ -13,14 +11,12 @@ pip install -r requirements.txt
 Structure:
 The Python scrips can be found in the folder "Code", input values in the map "Data".
 
-`Testing: `
-
 Authors: 
 Clint, Rosa, Liora
 AKA Team drop.table.nodes
 
 Acknowledgments:
-Arne
-StackOverflow
-Wikipedia
+Arne, 
+StackOverflow, 
+Wikipedia &
 Minor Programming UvA

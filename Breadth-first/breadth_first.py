@@ -29,7 +29,13 @@ print(list_color_node)
 left_provinces = province_list[0]
 print(province_list[0])
 
-# buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief 
+# buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief
+def factorial(number):
+    if number > 1:
+        return(number * factorial(number -1))
+    else:
+        return(1)
+print(factorial(3))
 
 
 #def check_color(list_color):

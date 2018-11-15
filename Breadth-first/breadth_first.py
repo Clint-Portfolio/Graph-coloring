@@ -11,35 +11,25 @@ from bs4 import BeautifulSoup
 from helpers import provinces
 from helpers import land_naar_nummer
 
-# ik probeerde de land_naar_nummers te gebruiken maar dat werkte niet.
-# a = provinces("buurlanden_NL.csv")
-# nummers = land_naar_nummer(a[0], a[1])
-#print(nummers)
-
-
 province_list = (provinces("buurlanden_NL.csv"))[0]
 #print(province_list)
 
 list_neighbors = (provinces("buurlanden_NL.csv"))[1]
 #print(list_neighbors)
 
-#search root of the graph and add to queue + # begin bij de meest linker van het rijtje van provincies
+list_color = ['A','B','C','D','E']
+list_color_node = []
+
+# maak een lijst gevult met none
+for i in range(len(province_list)):
+    list_color_node.append(None)
+print(list_color_node)
+
+# pak node 0: meest linker provincie
 left_provinces = province_list[0]
-#print(province_list[0])
+print(province_list[0])
+
+# buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief 
 
 
-# het beginpunt kan elk land zijn
-for i in range(len(list_neighbors)):
-    provinces = province_list[i]
-    neigbours = list_neighbors[i]
-    print(provinces, neigbours)
-
-    #if there is a node: if there is a neigbouring country
-    for neigbour in neigbours:
-
-
-
-
-	#if there is a solution: stop searching and give a solution
-	#if there is not a solution: add all children
-# if queue is empty, stop searching
+#def check_color(list_color):

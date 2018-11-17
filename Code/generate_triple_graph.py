@@ -32,3 +32,21 @@ def generate_triple():
     countrylist.append(nodebottom)
 
     return(countrylist)
+
+
+def generate_single():
+    """
+    generate a simple graph of type:
+    0-0-0-0-... etc.
+    """
+    from helpers import Node
+    countrylist = []
+    nr_of_nodes = 10
+    for i in range(0, nr_of_nodes):
+        if i == 0:
+            countrylist.append(Node(i, None, [1]))
+        elif i == nr_of_nodes - 1:
+            countrylist.append(Node(i, None, [i - 1]))
+        else:
+            countrylist.append(Node(i, None, [i - 1, i + 1]))
+    return(countrylist)

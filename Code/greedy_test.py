@@ -26,10 +26,13 @@ for i in range(4, len(full_transmitter_list) + 1):
 for transmitter_list in list_of_transmitter_lists:
     for most_neighbored_countries in range(0, len(countrylist)):
         most_neighbored_countrieslist = {}
+        
         for i in range(0, len(countrylist)):
             countrylist = greedy(generate_triple(), transmitter_list, i, most_neighbored_countries)
+            
             if type(countrylist) == list:
                 trans_count = []
+                
                 for letter in transmitter_list:
                     trans_count.append(countrylist.count(letter))
 
@@ -38,6 +41,7 @@ for transmitter_list in list_of_transmitter_lists:
                 countrylist = generate_triple()
 
         results[most_neighbored_countries] = most_neighbored_countrieslist
+
 lowest_cost_positions = []
 lowest_cost = 58**len(countrylist)
 
@@ -46,8 +50,10 @@ for transmitter_cost in transmitter_cost_list:
     for most_neighbor_key in results.keys():
         for starting_node_key in results[most_neighbor_key].keys():
             total_cost = 0
+            
             for i in range(0, len(transmitter_list)):
                 total_cost += results[most_neighbor_key][starting_node_key][i] * transmitter_cost[i]
+            
             if total_cost < lowest_cost:
                 lowest_cost = total_cost
                 lowest_cost_positions = []

@@ -12,49 +12,37 @@ def provinces(INPUT_CSV):
         # loop over lines to get (neighboring) provinces
         for line in lines:
             split_list = line.split(';')
-            provinces = split_list[0].strip('/r/n')
+            provinces = split_list[0]
             #print(type(provinces))
 
             # The provinces were strings and I put it in a list
             list_provinces.append(provinces)
 
-            province_neigbours = split_list[1]
-            province_neigbour = province_neigbours.split(',')
+            province_neigbours = split_list[1].split(', ')
 
-            province_neigbour[-1] = province_neigbour[-1].rstrip()
-            list_neighbors.append(province_neigbour)
+            province_neigbours[-1] = province_neigbours[-1].strip()
+            list_neighbors.append(province_neigbours)
 
         return(list_provinces, list_neighbors)
 
 
 def land_naar_nummer(provincies, buurlanden_nl):
-
     # maakt woordenboek met provincie en indexnummer
-    index = 0
-    provincies_dic = {}
-    for provincie in provincies:
-        provincies_dic [provincie] = index
-        index+=1
-
+    provincies_dic = {"Noord-Holland" : 0, "Zuid-Holland" : 1, "Utrecht" : 2, "Zeeland" : 3, "Noord-Brabant": 4, "Groningen" : 5, "Drente" : 6, "Friesland" : 7, "Flevoland" : 8, "Overijssel" : 9, "Gelderland" : 10, "Limburg" : 11}
 
     buurlanden_cijfers = []
-    buurland_provincie = []
 
-    # dat er niet eerst een lege lijst gereturned wordt
-    lijst = False
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer
     for provincie in buurlanden_nl:
-        if lijst == True:
-            buurlanden_cijfers.append(buurland_provincie)
-            buurland_provincie = []
-        for land in provincie:
-            if land in provincies_dic:
-                buurland_provincie.append(provincies_dic[land])
-                lijst = True
-    # dat de laatste provinsie ook toegevoegd wordt
-    buurlanden_cijfers.append(buurland_provincie)
-    return(buurlanden_cijfers)
+        buurlanden_provincie = []
+        
+        for buurland in provincie:
+            if buurland in provincies_dic:
+                buurlanden_provincie.append(provincies_dic[buurland])
+        
+        buurlanden_cijfers.append(buurlanden_provincie)
 
+    return buurlanden_cijfers
 
 class Node(object):
 

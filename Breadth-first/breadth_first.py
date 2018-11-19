@@ -30,12 +30,16 @@ left_provinces = province_list[0]
 print(province_list[0])
 
 # buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief
-def factorial(number):
-    if number > 1:
-        return(number * factorial(number -1))
-    else:
-        return(1)
-print(factorial(4))
+def provinces(buurland):
+    for buurland in list_neighbors:
+        # if province has no neigbours stop
+        if list_neigbors = []:
+            return
+        # if province has neigbours find them
+        else:
+            return(buurland * provinces(buurland[i-1]))
+        # if neigbouringprovince for original province has no neigbourprovinces go back to original province and find neigbouringprovince
+
 
 #def provincies()
 a = provinces("buurlanden_NL.csv")

@@ -35,7 +35,12 @@ def factorial(number):
         return(number * factorial(number -1))
     else:
         return(1)
-print(factorial(3))
+print(factorial(4))
+
+#def provincies()
+a = provinces("buurlanden_NL.csv")
+nummers = land_naar_nummer(a[0], a[1])
+print(nummers)
 
 
 #def check_color(list_color):

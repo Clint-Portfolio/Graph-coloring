@@ -37,7 +37,7 @@ def provinces(buurland):
             return
         # if province has neigbours find them
         else:
-            return(buurland * provinces(buurland[i-1]))
+            return(provinces(list_neigbors[buurland-1]))
         # if neigbouringprovince for original province has no neigbourprovinces go back to original province and find neigbouringprovince
 
 

@@ -28,18 +28,23 @@ def provinces(INPUT_CSV):
 
 def land_naar_nummer(provincies, buurlanden_nl):
     # maakt woordenboek met provincie en indexnummer
-    provincies_dic = {"Noord-Holland" : 0, "Zuid-Holland" : 1, "Utrecht" : 2, "Zeeland" : 3, "Noord-Brabant": 4, "Groningen" : 5, "Drente" : 6, "Friesland" : 7, "Flevoland" : 8, "Overijssel" : 9, "Gelderland" : 10, "Limburg" : 11}
+    # provincies_dic = {"Noord-Holland" : 0, "Zuid-Holland" : 1, "Utrecht" : 2, "Zeeland" : 3, "Noord-Brabant": 4, "Groningen" : 5, "Drente" : 6, "Friesland" : 7, "Flevoland" : 8, "Overijssel" : 9, "Gelderland" : 10, "Limburg" : 11}
+    provincies_dic = {}
+    index = 0
+    for provincie in provincies:
+        provincies_dic[provincie] = index
+        index += 1
 
     buurlanden_cijfers = []
 
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer
     for provincie in buurlanden_nl:
         buurlanden_provincie = []
-        
+
         for buurland in provincie:
             if buurland in provincies_dic:
                 buurlanden_provincie.append(provincies_dic[buurland])
-        
+
         buurlanden_cijfers.append(buurlanden_provincie)
 
     return buurlanden_cijfers

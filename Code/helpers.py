@@ -35,6 +35,10 @@ def land_naar_nummer(provincies, buurlanden_nl):
         provincies_dic[provincie] = index
         index += 1
 
+    print(provincies_dic)
+    for i in provincies_dic.keys():
+        print(provincies_dic[i])
+    print()
     buurlanden_cijfers = []
 
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer

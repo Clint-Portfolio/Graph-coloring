@@ -30,21 +30,20 @@ left_provinces = province_list[0]
 print(province_list[0])
 
 # buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief
-def provinces(buurland):
-    for buurland in list_neighbors:
+#def provinces(buurland):
+    # for buurland in list_neighbors:
         # if province has no neigbours stop
-        if list_neigbors = []:
-            return
+        #if list_neigbors = []:
+        #    return
         # if province has neigbours find them
-        else:
-            return(provinces(list_neigbors[buurland-1]))
+        #else:
+        #    return(provinces(list_neigbors[buurland-1]))
         # if neigbouringprovince for original province has no neigbourprovinces go back to original province and find neigbouringprovince
 
 
 #def provincies()
-a = provinces("buurlanden_NL.csv")
-nummers = land_naar_nummer(a[0], a[1])
-print(nummers)
+#a = provinces("buurlanden_NL.csv")
+#nummers = land_naar_nummer(a[0], a[1])
+#print(nummers)
 
-
-#def check_color(list_color):
+# def check_color(list_color)

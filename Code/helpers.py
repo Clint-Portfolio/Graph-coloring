@@ -84,7 +84,7 @@ class Node(object):
 
         return True
 
-def generate_triple():
+def generate_triple(just_numbers = False):
     countrylist = []
 
     nodetop1 = Node(7, None, [0, 1, 2, 8])
@@ -103,7 +103,13 @@ def generate_triple():
     countrylist.append(nodetop2)
     countrylist.append(nodebottom)
 
-    return countrylist
+    if just_numbers == True:
+        new_countrylist = []
+        for i in countrylist:
+            new_countrylist.append(i.neighbors)
+        countrylist = new_countrylist
+
+    return(countrylist)
 
 def numbers_to_nodes(neighborlist):
     nodelist = []
@@ -162,3 +168,15 @@ def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
         countrytranslist.append(node.trans_type)
 
     return(countrytranslist)
+
+def calculate_cost(list_of_countries, transmitter_cost_list):
+    if type(list_of_countries[0]) == string:
+        new_list_of_countries = []
+        for country in list_of_countries:
+            new_list_of_countries.append(transmitter_cost_list.index(country))
+        list_of_countries = new_list_of_countries
+    cost = 0
+    for country in list_of_countries:
+        cost += transmitter_cost_list[country]
+
+    return(cost)

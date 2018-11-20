@@ -1,4 +1,3 @@
-﻿Noord-Holland;Friesland, Flevoland, Utrecht, Zuid-Holland
 Zuid-Holland;Noord-Holland, Utrecht, Gelderland, Noord-Brabant, Zeeland
 Utrecht;Noord-Holland, Zuid-Holland, Gelderland, Noord-Brabant, Flevoland
 Zeeland;Zuid-Holland, Noord-Brabant
@@ -10,3 +9,4 @@ Flevoland;Noord-Holland, Friesland, Utrecht, Gelderland, Overijssel
 Overijssel;Drente, Friesland, Flevoland, Gelderland
 Gelderland;Overijssel, Flevoland, Utrecht, Zuid-Holland, Limburg, Noord-Brabant
 Limburg;Noord-Brabant, Gelderland
+Noord-Holland;Friesland, Flevoland, Utrecht, Zuid-Holland

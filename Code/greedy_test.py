@@ -8,16 +8,16 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 
 starting_node = 0
 results = {}
 
-for i in transmitter_cost_list:
-    print(i)
-    print((i[0] + i[1] + i[2] + i[3]) / 4)
-    print((i[0] + i[1] + i[2] + i[3] + i[4]) / 5)
-    print((i[0] + i[1] + i[2] + i[3] + i[4] + i[5]) / 6)
-    print((i[0] + i[1] + i[2] + i[3] + i[4] + i[5] + i[6]) / 7)
-    print()
-
-print()
-print()
+# for i in transmitter_cost_list:
+#     print(i)
+#     print((i[0] + i[1] + i[2] + i[3]) / 4)
+#     print((i[0] + i[1] + i[2] + i[3] + i[4]) / 5)
+#     print((i[0] + i[1] + i[2] + i[3] + i[4] + i[5]) / 6)
+#     print((i[0] + i[1] + i[2] + i[3] + i[4] + i[5] + i[6]) / 7)
+#     print()
+#
+# print()
+# print()
 
 list_of_transmitter_lists = []
 for i in range(4, len(full_transmitter_list) + 1):
@@ -26,13 +26,13 @@ for i in range(4, len(full_transmitter_list) + 1):
 for transmitter_list in list_of_transmitter_lists:
     for most_neighbored_countries in range(0, len(countrylist)):
         most_neighbored_countrieslist = {}
-        
+
         for i in range(0, len(countrylist)):
             countrylist = greedy(generate_triple(), transmitter_list, i, most_neighbored_countries)
-            
+
             if type(countrylist) == list:
                 trans_count = []
-                
+
                 for letter in transmitter_list:
                     trans_count.append(countrylist.count(letter))
 
@@ -49,11 +49,12 @@ lowest_cost = 58**len(countrylist)
 for transmitter_cost in transmitter_cost_list:
     for most_neighbor_key in results.keys():
         for starting_node_key in results[most_neighbor_key].keys():
-            total_cost = 0
-            
-            for i in range(0, len(transmitter_list)):
-                total_cost += results[most_neighbor_key][starting_node_key][i] * transmitter_cost[i]
-            
+            # total_cost = 0
+            #
+            # for i in range(0, len(transmitter_list)):
+            #     total_cost += results[most_neighbor_key][starting_node_key][i] * transmitter_cost[i]
+
+            total_cost = calculate_cost(results[most_neighbor_key][starting_node_key], transmitter_cost)
             if total_cost < lowest_cost:
                 lowest_cost = total_cost
                 lowest_cost_positions = []
@@ -76,7 +77,7 @@ for i in lowest_cost_positions:
         print(" " + countrylist[-3], end = "")
         print("-" + countrylist[-2], end = "")
         print()
-        for node in countrylist:
+        for node in countrylist[:-3]:
             print(node, end = "")
         print()
         print("  " + countrylist[-1])

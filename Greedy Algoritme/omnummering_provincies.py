@@ -55,7 +55,7 @@ def land_naar_nummer(provincies, buurlanden_nl):
     provincies_dic = {"Noord-Holland" : 0, "Zuid-Holland" : 1, "Utrecht" : 2, "Zeeland" : 3, "Noord-Brabant": 4, "Groningen" : 5, "Drente" : 6, "Friesland" : 7, "Flevoland" : 8, "Overijssel" : 9, "Gelderland" : 10, "Limburg" : 11}
     
     # for provincie in provincies:
-    #     provincies_dic [provincie] = index
+    #     provincies_dic[provincie] = index
     #     index+=1
 
     buurlanden_cijfers = []
@@ -91,7 +91,7 @@ om te testen kunnen de volgende printstatements uitgevoerd worden
     #print(buurlanden_nl)
 """
 
-input = provinces("buurlanden_NL.csv")
+
 
 buurlanden_cijfers = land_naar_nummer(input[0], input[1])
 

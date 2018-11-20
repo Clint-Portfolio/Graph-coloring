@@ -10,19 +10,18 @@ import random
 from bs4 import BeautifulSoup
 from helpers import *
 
+def random(provinces):  
+       
+        zendmast_met_land = []     
 
-def random(provincies, buurlanden):  
-    provinces = (provinces("buurlanden_NL.csv"))[0]
-    zendmast_met_land = {}
-    
-for poging in range(10):
-        
-    for provincie in provincies: 
-        zendmast = random.randrange(7)
-        zendmast_met_land [provincie] = zendmast
+        for provincie in provincies: 
+                zendmast = random.randrange(7)
+                zendmast_met_land [provincie] = zendmast
 
-    
-    
+        return(zendmast_met_land)
 
 if __name__ == "__main__":
-    random(provincies, buurlanden)
+        provinces = (provinces("buurlanden_NL.csv"))[0]
+        big_list = []    
+        for i in range(100):
+                big_list.append(random(provinces))

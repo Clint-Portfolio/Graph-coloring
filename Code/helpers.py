@@ -34,11 +34,6 @@ def land_naar_nummer(provincies, buurlanden_nl):
     for provincie in provincies:
         provincies_dic[provincie] = index
         index += 1
-
-    print(provincies_dic)
-    for i in provincies_dic.keys():
-        print(provincies_dic[i])
-    print()
     buurlanden_cijfers = []
 
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer
@@ -51,7 +46,13 @@ def land_naar_nummer(provincies, buurlanden_nl):
 
         buurlanden_cijfers.append(buurlanden_provincie)
 
-    return buurlanden_cijfers
+    return(buurlanden_cijfers)
+
+"""
+The Node class:
+it can look for a suitable color for itself on its own.
+It has a name, color (transmitter type), and a list of neighbors as unique features
+"""
 
 class Node(object):
 
@@ -84,6 +85,17 @@ class Node(object):
 
         return True
 
+
+"""
+generate a graph of type:
+  0----0
+/ | \/ |\
+0-0-0-0-0-0-0
+  \ | /
+    0
+
+It can make a graph from both the Node class or a neighbor number representation (A list of lists with the positions of the neighbors in the graph)
+"""
 def generate_triple(just_numbers = False):
     countrylist = []
 
@@ -113,22 +125,11 @@ def generate_triple(just_numbers = False):
 
 def numbers_to_nodes(neighborlist):
     nodelist = []
-    for i in range(0, len(countrylist)):
+    for i in range(0, len(neighborlist)):
         nodelist.append(Node(i, None, neighborlist[i]))
     return(nodelist)
 
-# find node with most neighbors
-def most_neighbors(countrylist):
-    most_neighbored_countries = []
-    for node in countrylist:
-        if len(node.neighbors) > neighborcount:
-            neighborcount = len(node.neighbors)
 
-    for node in countrylist:
-        if len(node.neighbors) == neighborcount:
-            most_neighbored_countries.append(node.name)
-
-    return(most_neighbored_countries)
 
 """
 This greedy algorithm takes 4 arguments: The list of countries, the list of available transmitters,
@@ -139,6 +140,7 @@ The program will then run over the list from left to right (and back to 0 if at 
 If no suitable type has been found, it simply returns False.
 """
 def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
+    from helpers import Node
     neighborcount = 0
     most_neighbored_countries = []
     countrytranslist = []
@@ -169,14 +171,15 @@ def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
 
     return(countrytranslist)
 
-def calculate_cost(list_of_countries, transmitter_cost_list):
-    if type(list_of_countries[0]) == string:
-        new_list_of_countries = []
-        for country in list_of_countries:
-            new_list_of_countries.append(transmitter_cost_list.index(country))
-        list_of_countries = new_list_of_countries
-    cost = 0
-    for country in list_of_countries:
-        cost += transmitter_cost_list[country]
 
+"""
+A script to calculate the cost of the transmitters.
+It takes a list of the total number of transmitters in the country per type
+e.g. [4, 3, 2, 1, 1, 0]
+It then returns the cost of this list based on the transmitter cost given.
+"""
+def calculate_cost(number_of_transmitters, transmitter_cost_list):
+    cost = 0
+    for i in range(len(number_of_transmitters)):
+        cost += transmitter_cost_list[i] * number_of_transmitters[i]
     return(cost)

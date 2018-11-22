@@ -161,7 +161,7 @@ def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
     for i in range(starting_node, starting_node + len(countrylist)):
         if countrylist[i % len(countrylist)].trans_type == None:
             if not countrylist[i % len(countrylist)].changetype(transmitter_list, countrylist):
-                return False
+                return(False)
 
     for node in most_neighbored_countries:
         countrylist[node].changetype(transmitter_list, countrylist)
@@ -183,3 +183,9 @@ def calculate_cost(number_of_transmitters, transmitter_cost_list):
     for i in range(len(number_of_transmitters)):
         cost += transmitter_cost_list[i] * number_of_transmitters[i]
     return(cost)
+
+def countrylist_to_transmitter_amount(countrylist, transmitter_list):
+    count_list = []
+    for type in transmitter_list:
+        count_list.append(countrylist.count(type))
+    return(count_list)

@@ -1,3 +1,9 @@
+"""
+The main function of the 4 color problem algorithm. It takes 2 arguments: A CSV file with the node names and node neighbors
+The second argument specifies which algorithm is to be used
+"""
+
+
 # Add the file-structure to paths
 import os, sys
 directory = os.path.dirname(os.path.realpath(__file__))

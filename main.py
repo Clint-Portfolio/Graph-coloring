@@ -17,8 +17,6 @@ full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
 transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 38], [16, 17, 31, 33, 36, 56, 57], [3, 34, 36, 39, 41, 43, 58]]
 
 
-
-
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print("Usage: main.py csv_file algorithm")

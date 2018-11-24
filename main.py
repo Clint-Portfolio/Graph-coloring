@@ -30,5 +30,27 @@ if __name__ == '__main__':
             print(countries[i], end = " ")
             for j in best_country:
                 print(j[i], end = "")
-
             print()
+
+    if sys.argv[2] == "genetic":
+        from genetic import *
+        generation = genetic(full_transmitter_list[:5], countrylist, 200, 5000, 10)
+        print()
+        for i in generation[:3]:
+            print(i)
+            print(calculate_cost(countrylist_to_transmitter_amount(i, full_transmitter_list[:5]), transmitter_cost))
+        print()
+
+        for list_position in range(0, len(generation)):
+            wrong_neighbors = 0
+            for country in range(len(generation[list_position])):
+                for neighbor in countrylist[country]:
+                    # print(f"{generation[list_position][country]}, {generation[list_position][neighbor]}")
+                    if generation[list_position][country] == generation[list_position][neighbor]:
+                        wrong_neighbors += 1
+            print(f"Wrong neighbors of position {list_position}: {wrong_neighbors // 2}")
+
+
+        # for i in range(len(countries)):
+        #     print(countries[i], end = " ")
+        #     print(generation[0][i])

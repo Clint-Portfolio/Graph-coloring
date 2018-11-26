@@ -15,36 +15,50 @@ list_color_node = []
 
 # buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief
 def depth_first(list_neigbors, current_node, list_color_node):
-    list_color_node[current_node] = True
-    for buurland in list_neigbors[current_node]:
-        print(buurland)
+    #list_color_node[current_node] = True
+    var = len(list_color_node)
+    new_node_color_list = []
+    for list in list_color_node:
+        print(list)
+        for i in color(list, list_neigbors, list_color, current_node):
+            new_node_color_list.append(i)
+    for i in new_node_color_list:
+        list_color_node.append(i)
 
-        if list_color_node[buurland] is None:
-            return(depth_first(list_neigbors, buurland, list_color_node))
+    for i in range(var):
+        list_color_node.pop(0)
 
-def color(list_neigbors, list_color_node[buurland], list_color[0]):
+    for list in list_color_node:
+        for buurland in list_neigbors[current_node]:
+            if list[buurland] is None:
+                return(depth_first(list_neigbors, buurland, list_color_node))
+
+    return(list_color_node)
+
+
+def color(list_to_check, list_neigbors, list_color, node_to_check):
+#(list_neigbors, list_color_node[buurland], list_color[0]):
     grand_list = []
-    list_color_node[buurland] = True
+    for color in list_color:
+        color_found = True
+        for neighbour in list_neigbors[node_to_check]:
+            if color == list_to_check[neighbour]:
+                color_found = False
 
-    # add list color to list_color_node
-    grand_list.append(list_color)
+        if color_found == True:
+            list_to_check[node_to_check] = color
+            grand_list.append(list_to_check)
 
-    # for ENTER(list) in grand_list
-    for list in grand_list:
-        # for color in list_color
-        for color in list_color:
-            # als het kan voeg het toe: als het niet dezelfde kleur is
-            if (color == list_color_node[list]):
-                return(('x', list,color))
+
+    return(grand_list)
 
 
 if __name__ == '__main__':
     list_neigbors = generate_triple(True)
-
+    list_color_node = []
+    starting_list = []
     # maak een lijst gevult met none
     for i in range(len(list_neigbors)):
-        list_color_node.append(None)
-        print(list_color_node)
-
+        starting_list.append(None)
+    list_color_node.append(starting_list)
     depth_first(list_neigbors, 0, list_color_node)
-    color('x', list_color)

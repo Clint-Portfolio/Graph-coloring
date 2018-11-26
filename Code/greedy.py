@@ -17,7 +17,6 @@ def full_greedy(transmitter_list, transmitter_cost_list, neighbor_list=generate_
         most_neighbored_countrieslist = {}
         for i in range(0, len(neighbor_list)):
             countrylist = greedy(neighbor_list, transmitter_list, i, most_neighbored_countries)
-            print("".join(countrylist))
             if type(countrylist) == list:
                 trans_count = []
 
@@ -51,10 +50,9 @@ def full_greedy(transmitter_list, transmitter_cost_list, neighbor_list=generate_
     already_generated = []
     for i in lowest_cost_positions:
         countrylist = greedy(neighbor_list, transmitter_list, i[0], i[1])
-        if countrylist not in already_generated:
+        if countrylist not in (x[0] for x in already_generated):
             for node in countrylist:
                 print(node, end = "")
             print()
-            already_generated.append(countrylist)
-
+            already_generated.append([countrylist, i[2]])
     return(already_generated)

@@ -1,5 +1,5 @@
 """
-A script to edit the txt created by manually inserting the numbers of neighboring countryies/provnces into a readable csv file.
+A script to edit the txt created by manually inserting the numbers of neighboring countries/provinces into a readable csv file.
 The file is made by numbering provinces and putting the neighboring numbers higher than province N on line N
 The last line is the names of the provinces by number
 The script will output a csv file as described in ../Data
@@ -37,9 +37,12 @@ if __name__ == '__main__':
             if neighbor not in neighbor_number_list[neighbor]:
                 neighbor_number_list[neighbor].append(line)
 
+    for i in country_name_list:
+        print(country_name_list.index(i) + 1, i)
     # convert number to name by a lookup in the country name list
     writelist = []
     for line in neighbor_number_list:
+        print(line)
         country = []
         for neighbor in line:
             country.append(country_name_list[neighbor])

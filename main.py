@@ -17,11 +17,6 @@ from greedy import full_greedy
 from breadthfirst import depth_first
 
 
-from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
-from helpers import calculate_cost, countrylist_to_transmitter_amount
-from greedy import full_greedy
-
-
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
 transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
                          [19, 20, 21, 23, 36, 37, 38],

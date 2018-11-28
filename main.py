@@ -5,17 +5,17 @@ Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
 """
 
-from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
-from helpers import calculate_cost, countrylist_to_transmitter_amount
-from greedy import full_greedy
-
-
 # Add the file-structure to paths
 import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "Code"))
 sys.path.append(os.path.join(directory, "Code", ""))
+
+from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
+from helpers import calculate_cost, countrylist_to_transmitter_amount
+from greedy import full_greedy
+from algrandom import random_function
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -65,3 +65,17 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
+
+    if sys.argv[1] == "random":
+        big_list = []    
+        for i in range(100):
+                big_list.append(random_function(countries, ['A', 'B', 'C', 'D', 'E']))
+       
+        writefile = open(sys.argv[3], "w")
+
+        for country in big_list:
+            writefile.write( "letters: " )
+            for letter in country:
+                writefile.write(letter)
+            writefile.write("\n")
+            

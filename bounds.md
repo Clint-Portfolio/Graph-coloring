@@ -15,5 +15,5 @@ The statespace of the amount of possibilities for transmitters in the provinces 
 
 We could tight the statespace, since the fourcolourproblem has shown that a solution is possible with only four colors. That will give us the following statespace:
 
-5 ^ amount_of_provinces.
+4 ^ amount_of_provinces.
 

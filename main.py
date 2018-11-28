@@ -37,9 +37,6 @@ if __name__ == '__main__':
     if sys.argv[1].lower() == 'greedy':
         best_country = full_greedy(full_transmitter_list, transmitter_cost_list, countrylist)
 
-    if sys.argv[1].lower() == 'breadthfirst':
-        best_country = depth_first(list_neigbors, current_node, list_color_node)
-
         writefile = open(sys.argv[3], "w")
         write_lines = []
         for i in best_country:
@@ -73,6 +70,10 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
+
+    if sys.argv[1].lower() == 'breadthfirst':
+        best_country = depth_first(list_neigbors, current_node, list_color_node)
+
 
     if sys.argv[1] == "random":
         big_list = []

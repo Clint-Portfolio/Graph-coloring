@@ -27,12 +27,9 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
-<<<<<<< HEAD
         print("Algorithms implemented are: greedy, genetic, breadthfirst")
-=======
-        print("Algorithms implemented are: greedy, genetic")
         exit(1)
->>>>>>> 4123ad67b1d6cdd8c146d1d947bc23753d25dc68
+
     countries, neighbors = provinces(sys.argv[2])
     countrylist = land_naar_nummer(countries, neighbors)
 

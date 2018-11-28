@@ -1,9 +1,8 @@
-
 from helpers import generate_triple, calculate_cost, countrylist_to_transmitter_amount
 
 transmitter_list = ["A", "B", "C", "D"]
 full_transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 38], [16, 17, 31, 33, 36, 56, 57], [3, 34, 36, 39, 41, 43, 58]]
-transmitter_cost = [19, 20, 21, 23, 36]
+transmitter_cost = full_transmitter_cost_list[1]
 
 def score(neighbor_list, generation_list, transmitter_cost, transmitter_list):
     score_list = []
@@ -19,15 +18,17 @@ def score(neighbor_list, generation_list, transmitter_cost, transmitter_list):
         score = score - score * (same_neighbors // 2)
         score_list.append([nodelist, score])
 
-    score_list.sort(reverse=True, key=lambda x : x[1])
+    score_list.sort(reverse=True, key=lambda x: x[1])
     return(score_list)
+
 
 """
 A culling formula to make a 'breeding ground' of a generation.
-The average of the population is calculated, and 'fitness' is determined by dividing the average by the score.
-The integer of this number says how many of the generation will be guaranteed put in the breeding ground.
-The decimals are a chance for the parent to get in the breeding ground: A random number between 0 and 1 is generated for this.
+The average of the population is calculated
+'fitness' is determined by dividing the average by the score.
+The generation is then put into the 'breeding ground' according to fitness
 """
+
 
 def cull(generation_score_list):
     import random
@@ -50,6 +51,7 @@ def cull(generation_score_list):
             breeding_ground.append(parent[0])
 
     return(breeding_ground)
+
 
 def breed(parent_list, transmitter_list, generation_size):
     import random

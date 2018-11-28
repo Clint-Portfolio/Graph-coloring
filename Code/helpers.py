@@ -5,7 +5,7 @@ def provinces(INPUT_CSV):
     # open excel file
     with open(INPUT_CSV, newline='') as csvfile:
         lines = csvfile.readlines()
-        #print(lines[0])
+        # print(lines[0])
 
         list_provinces = []
         list_neighbors = []
@@ -13,7 +13,7 @@ def provinces(INPUT_CSV):
         for line in lines:
             split_list = line.split(';')
             provinces = split_list[0]
-            #print(type(provinces))
+            # print(type(provinces))
 
             # The provinces were strings and I put it in a list
             list_provinces.append(provinces)
@@ -48,11 +48,13 @@ def land_naar_nummer(provincies, buurlanden_nl):
 
     return(buurlanden_cijfers)
 
+
 """
 The Node class:
 it can look for a suitable color for itself on its own.
 It has a name, color (transmitter type), and a list of neighbors as unique features
 """
+
 
 class Node(object):
 
@@ -75,15 +77,15 @@ class Node(object):
                 if nodelist[node].trans_type == check_type:
                     type_found = False
                     break
-            if type_found == True:
+            if type_found:
                 self.trans_type = check_type
                 break
             a += 1
 
             if a == len(transmitter_list):
-                return False
+                return(False)
 
-        return True
+        return(True)
 
 
 """
@@ -96,7 +98,9 @@ generate a graph of type:
 
 It can make a graph from both the Node class or a neighbor number representation (A list of lists with the positions of the neighbors in the graph)
 """
-def generate_triple(just_numbers = False):
+
+
+def generate_triple(just_numbers=False):
     countrylist = []
 
     nodetop1 = Node(7, None, [0, 1, 2, 8])
@@ -115,7 +119,7 @@ def generate_triple(just_numbers = False):
     countrylist.append(nodetop2)
     countrylist.append(nodebottom)
 
-    if just_numbers == True:
+    if just_numbers:
         new_countrylist = []
         for i in countrylist:
             new_countrylist.append(i.neighbors)
@@ -123,12 +127,12 @@ def generate_triple(just_numbers = False):
 
     return(countrylist)
 
+
 def numbers_to_nodes(neighborlist):
     nodelist = []
     for i in range(0, len(neighborlist)):
         nodelist.append(Node(i, None, neighborlist[i]))
     return(nodelist)
-
 
 
 """
@@ -138,9 +142,13 @@ The program will first find the highest number of neighbors any node has in the 
 This to test if there is an optimum to be found for prefilling the most neighbored countries.
 The program will then run over the list from left to right (and back to 0 if at the end of the list), changing the type of the nodes accordingly.
 If no suitable type has been found, it simply returns False.
+There are 2 versions of the algorithm: a 'node' version, that uses the Node class
+And a regular version, that uses a list of neighbors, below this version
 """
-def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
-    from helpers import Node
+
+
+def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbors):
+    # from helpers import Node
     neighborcount = 0
     most_neighbored_countries = []
     countrytranslist = []
@@ -159,7 +167,7 @@ def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
 
     # change color of country accordingly
     for i in range(starting_node, starting_node + len(countrylist)):
-        if countrylist[i % len(countrylist)].trans_type == None:
+        if countrylist[i % len(countrylist)].trans_type is None:
             if not countrylist[i % len(countrylist)].changetype(transmitter_list, countrylist):
                 return(False)
 
@@ -172,20 +180,104 @@ def greedy(countrylist, transmitter_list, starting_node, find_most_neighbors=0):
     return(countrytranslist)
 
 
+def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
+    type = 0
+    type_found = False
+    while not type_found:
+        for neighbor in neighborlist[node]:
+            if countrylist[neighbor] == type:
+                type += 1
+                break
+            type_found = True
+    if type_found:
+        countrylist[node] == type
+    else:
+        return(False)
+    return(countrylist)
+
+
+def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neighbors=0):
+    neighborcount = 0
+    most_neighbored_countries = []
+    # find node with the most connections
+    for node in neighborlist:
+        if len(node) > neighborcount:
+            neighborcount = len(node)
+
+    # add most neighbored countries to list
+    for node in neighborlist:
+        if len(node) >= neighborcount - find_most_neighbors:
+            most_neighbored_countries.append(neighborlist.index(node))
+
+    country_transmitter_list = [None for i in range(len(neighborlist))]
+
+    for node in most_neighbored_countries:
+        country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list[::-1], node)
+
+    for node in range(len(neighborlist)):
+        if country_transmitter_list[node] is None:
+            country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
+
+    for node in most_neighbored_countries:
+        country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
+
+    if None in country_transmitter_list:
+        print("No suitable options found")
+        return(False)
+
+    return(country_transmitter_list)
+
+
 """
-A script to calculate the cost of the transmitters.
+A function to calculate the cost of a given transmitter configuration
+"""
+
+
+def cost_from_country_list(countrylist, transmitter_cost, transmitter_list):
+    cost = 0
+    for country in countrylist:
+        cost = cost + transmitter_cost[transmitter_list.index(country)]
+    return cost
+
+
+"""
+A function to calculate the cost of the transmitters.
 It takes a list of the total number of transmitters in the country per type
 e.g. [4, 3, 2, 1, 1, 0]
 It then returns the cost of this list based on the transmitter cost given.
 """
+
+
 def calculate_cost(number_of_transmitters, transmitter_cost_list):
     cost = 0
     for i in range(len(number_of_transmitters)):
         cost += transmitter_cost_list[i] * number_of_transmitters[i]
     return(cost)
 
+
+"""
+A function to rewrite the transmitter list to number of transmitters per type
+To be used in the calculate_cost function
+"""
+
+
 def countrylist_to_transmitter_amount(countrylist, transmitter_list):
     count_list = []
     for type in transmitter_list:
         count_list.append(countrylist.count(type))
     return(count_list)
+
+
+"""
+A function to count the number of neighbors with the same 'color'
+"""
+
+
+def check_for_matching_neighbors(countrylist, neighborlist):
+    matching = 0
+    for country in range(len(countrylist)):
+        for neighbor in neighborlist[country]:
+            if countrylist[country] == countrylist[neighbor]:
+                matching += 1
+    matching = matching / 2
+    return(matching)

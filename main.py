@@ -15,6 +15,7 @@ from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
 from greedy import full_greedy
 from breadthfirst import depth_first
+from algrandom import random_function
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -72,3 +73,16 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
+
+    if sys.argv[1] == "random":
+        big_list = []
+        for i in range(100):
+                big_list.append(random_function(countries, ['A', 'B', 'C', 'D', 'E']))
+
+        writefile = open(sys.argv[3], "w")
+
+        for country in big_list:
+            writefile.write( "letters: " )
+            for letter in country:
+                writefile.write(letter)
+            writefile.write("\n")

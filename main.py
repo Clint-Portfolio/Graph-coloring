@@ -8,6 +8,7 @@ Argument 4 is the file where the results are to be written to.
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
 from greedy import full_greedy
+from breadthfirst import depth_first
 
 
 # Add the file-structure to paths
@@ -25,12 +26,15 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
-        print("Algorithms implemented are: greedy, genetic")
+        print("Algorithms implemented are: greedy, genetic, breadthfirst")
     countries, neighbors = provinces(sys.argv[2])
     countrylist = land_naar_nummer(countries, neighbors)
 
     if sys.argv[1].lower() == 'greedy':
         best_country = full_greedy(full_transmitter_list, transmitter_cost_list, countrylist)
+
+    if sys.argv[1].lower() == 'breadthfirst':
+        best_country = depth_first(list_neigbors, current_node, list_color_node)
 
         writefile = open(sys.argv[3], "w")
         write_lines = []

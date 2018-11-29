@@ -4,7 +4,6 @@ Argument 2 is the algorithm
 Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
 """
-
 # Add the file-structure to paths
 import os
 import sys
@@ -16,16 +15,22 @@ from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
 from greedy import full_greedy
 from algrandom import random_function
+from breadthfirst import depth_first
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
-transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 38], [16, 17, 31, 33, 36, 56, 57], [3, 34, 36, 39, 41, 43, 58]]
+transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
+                         [19, 20, 21, 23, 36, 37, 38],
+                         [16, 17, 31, 33, 36, 56, 57],
+                         [3, 34, 36, 39, 41, 43, 58]]
 
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
-        print("Algorithms implemented are: greedy, genetic")
+        print("Algorithms implemented are: greedy, genetic, breadthfirst")
+        exit(1)
+
     countries, neighbors = provinces(sys.argv[2])
     countrylist = land_naar_nummer(countries, neighbors)
 
@@ -65,12 +70,16 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
+       
+    if sys.argv[1].lower() == 'breadthfirst':
+        best_country = depth_first(list_neigbors, current_node, list_color_node)
+
 
     if sys.argv[1] == "random":
-        big_list = []    
+        big_list = []
         for i in range(100):
                 big_list.append(random_function(countries, ['A', 'B', 'C', 'D', 'E']))
-       
+
         writefile = open(sys.argv[3], "w")
 
         for country in big_list:

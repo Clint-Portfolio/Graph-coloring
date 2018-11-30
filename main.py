@@ -28,7 +28,7 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
-        print("Algorithms implemented are: greedy, genetic, breadthfirst")
+        print("Algorithms implemented are: greedy, genetic, breadthfirst and random")
         exit(1)
 
     countries, neighbors = provinces(sys.argv[2])
@@ -83,8 +83,8 @@ if __name__ == '__main__':
         writefile = open(sys.argv[3], "w")
 
         for country in big_list:
-            writefile.write( "letters: " )
+            #writefile.write( "letters: " )
             for letter in country:
                 writefile.write(letter)
-            writefile.write("\n")
+             #writefile.write("\n")
             

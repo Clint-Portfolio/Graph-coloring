@@ -18,9 +18,11 @@ sys.path.append(os.path.join(directory, "Data", ""))
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
+from helpers import cost_from_country_list
 from greedy import full_greedy
 from algrandom import random_function
 from breadthfirst import depth_first
+
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -33,7 +35,7 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
-        print("Algorithms implemented are: greedy, genetic, breadthfirst")
+        print("Algorithms implemented are: greedy, genetic, breadthfirst and random")
         exit(1)
 
     countries, neighbors = provinces(sys.argv[2])
@@ -85,14 +87,19 @@ if __name__ == '__main__':
             writefile.write(i + "\n")
 
     if sys.argv[1] == "random":
+        # big list ocntains the letters with the random function
         big_list = []
         for i in range(100):
-                big_list.append(random_function(countries, ['A', 'B', 'C', 'D', 'E']))
-
+                big_list.append(random_function(countries, full_transmitter_list[:5]))
         writefile = open(sys.argv[3], "w")
 
         for country in big_list:
-            writefile.write( "letters: " )
             for letter in country:
                 writefile.write(letter)
+
+            writefile.write("; ")
+            for transmitter_cost in transmitter_cost_list:
+
+                writefile.write(str(cost_from_country_list(country, transmitter_cost, full_transmitter_list[:5])))
+                writefile.write("; ")
             writefile.write("\n")

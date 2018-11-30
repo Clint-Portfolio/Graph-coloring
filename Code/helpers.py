@@ -182,18 +182,15 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
 
 def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
     type = 0
-    type_found = False
-    while not type_found:
-        for neighbor in neighborlist[node]:
-            if countrylist[neighbor] == type:
-                type += 1
-                break
-            type_found = True
-    if type_found:
-        countrylist[node] == type
-    else:
-        return(False)
-    return(countrylist)
+    for type in transmitter_list:
+        neighbortypes = []
+        for neighbor in [countrylist[i] for i in neighborlist]:
+            if neighbor != None:
+                neighbortypes.append(neighbor)
+        if type not in neighbortypes:
+            return(type)
+    return(countrylist[node])
+
 
 
 def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neighbors=0):
@@ -212,14 +209,19 @@ def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neig
     country_transmitter_list = [None for i in range(len(neighborlist))]
 
     for node in most_neighbored_countries:
-        country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list[::-1], node)
+        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list[::-1], node)
 
     for node in range(len(neighborlist)):
         if country_transmitter_list[node] is None:
-            country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
+            country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list, node)
+
+    if check_for_matching_neighbors(country_transmitter_list, neighborlist) > 0:
+        print("Wrong country found:")
+        print(f"Starting Node: {starting_node}, find most: {find_most_neighbors}, country: {country_transmitter_list}")
+        print(check_for_matching_neighbors(country_transmitter_list, neighborlist))
 
     for node in most_neighbored_countries:
-        country_transmitter_list = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
+        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list, node)
 
     if None in country_transmitter_list:
         print("No suitable options found")
@@ -277,7 +279,7 @@ def check_for_matching_neighbors(countrylist, neighborlist):
     matching = 0
     for country in range(len(countrylist)):
         for neighbor in neighborlist[country]:
-            if countrylist[country] == countrylist[neighbor]:
-                matching += 1
-    matching = matching / 2
+            if neighbor > country:
+                if countrylist[country] == countrylist[neighbor]:
+                    matching += 1
     return(matching)

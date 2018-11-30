@@ -3,6 +3,8 @@ The main function of the 4 color problem algorithm. It takes 3 arguments:
 Argument 2 is the algorithm
 Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
+An example would be:
+main.py random Data/ukraine_neighbor_provinces.csv random.txt
 """
 # Add the file-structure to paths
 import os
@@ -13,9 +15,11 @@ sys.path.append(os.path.join(directory, "Code", ""))
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
+from helpers import cost_from_country_list
 from greedy import full_greedy
 from algrandom import random_function
 from breadthfirst import depth_first
+
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -70,21 +74,26 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
-       
+
     if sys.argv[1].lower() == 'breadthfirst':
-        best_country = depth_first(list_neigbors, current_node, list_color_node)
+        best_country = depth_first(neighbors, [], full_transmitter_list[:5])
+        print(best_country)
 
 
     if sys.argv[1] == "random":
+        # big list ocntains the letters with the random function
         big_list = []
         for i in range(100):
-                big_list.append(random_function(countries, ['A', 'B', 'C', 'D', 'E']))
-
+                big_list.append(random_function(countries, full_transmitter_list[:5]))
         writefile = open(sys.argv[3], "w")
 
         for country in big_list:
-            #writefile.write( "letters: " )
             for letter in country:
                 writefile.write(letter)
-             #writefile.write("\n")
-            
+
+            writefile.write("; ")
+            for transmitter_cost in transmitter_cost_list:
+
+                writefile.write(str(cost_from_country_list(country, transmitter_cost, full_transmitter_list[:5])))
+                writefile.write("; ")
+            writefile.write("\n")

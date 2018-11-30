@@ -6,14 +6,13 @@ A random function for the distribution of transmission frequencies in a given co
 """
 
 import csv
-from bs4 import BeautifulSoup
 from helpers import *
-import random 
-def random_function(provinces, transmitters):  
-       
-        zendmast_met_land = []     
+import random
+def random_function(provinces, transmitters):
 
-        for provincie in provinces: 
+        zendmast_met_land = []
+
+        for provincie in provinces:
                 zendmast = random.randrange(len(transmitters))
                 zendmast_met_land.append(transmitters[zendmast])
 
@@ -22,6 +21,6 @@ def random_function(provinces, transmitters):
 
 if __name__ == "__main__":
         #provinces = (provinces("../data/buurlanden_NL.csv"))[0]
-        big_list = []    
+        big_list = []
         for i in range(100):
                 big_list.append(random_function(provinces,['A', 'B', 'C', 'D', 'E']))

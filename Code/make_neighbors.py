@@ -51,7 +51,7 @@ if __name__ == '__main__':
     writefile = open(sys.argv[2], "a")
 
     for line in range(0, len(writelist)):
-        writefile.write(f"{country_name_list[line]}; {', '.join(writelist[line])}\n")
+        writefile.write(f"{country_name_list[line]}; {', '.join(set(writelist[line]))}\n")
 
     print("Succesfully wrote to file!")
     exit(0)

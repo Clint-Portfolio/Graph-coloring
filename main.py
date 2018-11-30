@@ -3,6 +3,8 @@ The main function of the 4 color problem algorithm. It takes 3 arguments:
 Argument 2 is the algorithm
 Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
+An example would be:
+main.py random Data/ukraine_neighbor_provinces.csv random.txt
 """
 # Add the file-structure to paths
 import os
@@ -70,9 +72,10 @@ if __name__ == '__main__':
                         wrong_neighbors += 1
             print(f"Wrong neighbors of position"
                   "{list_position}: {wrong_neighbors}")
-       
+
     if sys.argv[1].lower() == 'breadthfirst':
-        best_country = depth_first(list_neigbors, current_node, list_color_node)
+        best_country = depth_first(neighbors, [], full_transmitter_list[:5])
+        print(best_country)
 
 
     if sys.argv[1] == "random":
@@ -87,4 +90,3 @@ if __name__ == '__main__':
             for letter in country:
                 writefile.write(letter)
             writefile.write("\n")
-            

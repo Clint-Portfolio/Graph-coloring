@@ -1,0 +1,82 @@
+Adygea; Krasnodar, Dagestan
+Krasnodar; Stavropol, Adygea, Rostov, Karachay-Cherkessia
+Karachay-Cherkessia; Stavropol, Krasnodar, Kabardino-Balkaria
+Kabardino-Balkaria; Stavropol, North-Ossetia-Alania, Karachay-Cherkessia
+North-Ossetia-Alania; Ingushetia, Kabardino-Balkaria
+Ingushetia; Stavropol, North-Ossetia-Alania, Chenya
+Chenya; Ingushetia, Dagestan
+Dagestan; Stavropol, Adygea, Chenya
+Stavropol; Kalmykia, Krasnodar, Ingushetia, Karachay-Cherkessia, Dagestan, Kabardino-Balkaria
+Kalmykia; Astrakhan, Volgograd, Rostov, Stavropol
+Astrakhan; Volgograd, Kalmykia
+Volgograd; Kalmykia, Rostov, Astrakhan, Voronezh, Saratov
+Penza; Tambov, Mordovia, Ulyanovsk, Saratov
+Ulyanovsk; Mordovia, Chuvashia, Penza, Saratov, Tatarstan, Samara
+Samara; Ulyanovsk, Orenburg, Saratov, Tatarstan
+Tatarstan; Bashkortostan, Kirov, Orenburg, Chuvashia, Ulyanovsk, Mari-El, Udmurtia, Samara
+Kursk; Lipetsk, Belgorod, Voronezh, Bryansk, Oryol
+Belgorod; Kursk, Voronezh
+Lipetsk; Kursk, Tula, Tambov, Ryazan, Voronezh, Oryol
+Voronezh; Volgograd, Tambov, Lipetsk, Belgorod, Kursk, Saratov
+Tambov; Penza, Lipetsk, Ryazan, Voronezh, Saratov
+Bryansk; Tula, Smolensk, Oryol, Kursk
+Smolensk; Tver, Kaluga, Moskow-Oblast, Pskkov, Bryansk
+Kaluga; Tula, Moskow-Oblast, Smolensk, Oryol
+Oryol; Kaluga, Tula, Lipetsk, Kursk, Bryansk
+Tula; Kaluga, Lipetsk, Moskow-Oblast, Ryazan, Bryansk, Oryol
+Moscow; Moskow-Oblast
+Moskow-Oblast; Tver, Vladimir, Kaluga, Smolensk, Moscow, yaroslavl, Tula, Ryazan
+Ryazan; Nizhny-Novgorod, Mordovia, Vladimir, Tambov, Lipetsk, Tula, Moskow-Oblast
+Vladimir; Nizhny-Novgorod, yaroslavl, Moskow-Oblast, Ryazan, Ivanovo
+yaroslavl; Tver, Vladimir, Moskow-Oblast, Kostroma, Vologda, Ivanovo
+Ivanovo; Nizhny-Novgorod, Vladimir, Kostroma, yaroslavl
+Kostroma; Nizhny-Novgorod, yaroslavl, Kirov, Vologda, Ivanovo
+Saint-Petersburg; Leningrad-Oblast
+Leningrad-Oblast; Saint-Petersburg, Novgorod, Karelia, Vologda, Pskkov
+Pskkov; Novgorod, Tver, Leningrad-Oblast, Smolensk
+Novgorod; Leningrad-Oblast, Vologda, Tver, Pskkov
+Mordovia; Nizhny-Novgorod, Ulyanovsk, Chuvashia, Penza, Ryazan
+Nizhny-Novgorod; Mordovia, Vladimir, Kirov, Kostroma, Chuvashia, Mari-El, Ryazan, Ivanovo
+Chuvashia; Nizhny-Novgorod, Mordovia, Ulyanovsk, Mari-El, Tatarstan
+Mari-El; Nizhny-Novgorod, Chuvashia, Kirov, Tatarstan
+Udmurtia; Kirov, Bashkortostan, Tatarstan, Perm
+Bashkortostan; Sverdlovsk, Perm, Orenburg, Chelyabinsk, Udmurtia, Tatarstan
+Chelyabinsk; Kurgan, Orenburg, Bashkortostan, Sverdlovsk
+Kemerovo; Khakassia, Tomsk, Altai-Krai, Altai-Republic, Novosibirsk, Krasnoyarsk
+Khakassia; Tuva, Altai-Republic, Krasnoyarsk, Kemerovo
+Jewish-Autonomous-Oblast; Khabarovsk, Amur
+Vologda; yaroslavl, Novgorod, Karelia, Kostroma, Kirov, Arkhangelsk, Leningrad-Oblast
+Karelia; Murmansk, Arkhangelsk, Leningrad-Oblast, Vologda
+Arkhangelsk; Nenets, Kirov, Karelia, Komi, Vologda
+Komi; Perm, Khanty-Mansi, Nenets, Kirov, Arkhangelsk, Yamalo-Nenets
+Nenets; Arkhangelsk, Komi, Yamalo-Nenets
+Perm; Bashkortostan, Kirov, Komi, Udmurtia, Sverdlovsk
+Orenburg; Chelyabinsk, Bashkortostan, Tatarstan, Samara
+Sverdlovsk; Kurgan, Perm, Bashkortostan, Khanty-Mansi, Tyumen, Chelyabinsk
+Kurgan; Chelyabinsk, Tyumen, Sverdlovsk
+Khanty-Mansi; Tomsk, Komi, Yamalo-Nenets, Tyumen, Sverdlovsk
+Yamalo-Nenets; Khanty-Mansi, Komi, Nenets, Krasnoyarsk
+Tyumen; Kurgan, Omsk, Tomsk, Khanty-Mansi, Sverdlovsk
+Omsk; Novosibirsk, Tyumen, Tomsk
+Tomsk; Omsk, Altai-Krai, Khanty-Mansi, Krasnoyarsk, Novosibirsk, Tyumen, Kemerovo
+Novosibirsk; Tomsk, Omsk, Kemerovo, Altai-Krai
+Altai-Krai; Tomsk, Altai-Republic, Novosibirsk, Kemerovo
+Altai-Republic; Tuva, Khakassia, Altai-Krai, Kemerovo
+Krasnoyarsk; Khakassia, Tomsk, Sakha-(Yakutia), Yamalo-Nenets, Kemerovo, Tuva, Irkutsk
+Irkutsk; Buryatia, Sakha-(Yakutia), Krasnoyarsk, Tuva, Zabaykalsky
+Tuva; Khakassia, Buryatia, Altai-Republic, Krasnoyarsk, Irkutsk
+Buryatia; Tuva, Zabaykalsky, Irkutsk
+Zabaykalsky; Irkutsk, Buryatia, Amur, Sakha-(Yakutia)
+Sakha-(Yakutia); Khabarovsk, Magadan, Amur, Chukotka, Krasnoyarsk, Zabaykalsky, Irkutsk
+Amur; Khabarovsk, Jewish-Autonomous-Oblast, Zabaykalsky, Sakha-(Yakutia)
+Khabarovsk; Jewish-Autonomous-Oblast, Magadan, Amur, Sakha-(Yakutia), Primorsky
+Primorsky; Khabarovsk
+Magadan; Kamchatka, Chukotka, Khabarovsk, Sakha-(Yakutia)
+Chukotka; Kamchatka, Magadan, Sakha-(Yakutia)
+Kamchatka; Chukotka, Magadan
+Sakhalin; 
+Saratov; Volgograd, Tambov, Ulyanovsk, Penza, Voronezh, Samara
+Rostov; Krasnodar, Volgograd, Kalmykia
+Murmansk; Karelia
+Kirov; Nizhny-Novgorod, Perm, Kostroma, Arkhangelsk, Komi, Mari-El, Vologda, Udmurtia, Tatarstan
+Tver; Smolensk, yaroslavl, Novgorod, Moskow-Oblast, Pskkov

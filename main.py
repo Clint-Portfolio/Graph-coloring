@@ -12,6 +12,9 @@ import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "Code"))
 sys.path.append(os.path.join(directory, "Code", ""))
+directory = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(directory, "Data"))
+sys.path.append(os.path.join(directory, "Data", ""))
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
@@ -74,9 +77,12 @@ if __name__ == '__main__':
                   "{list_position}: {wrong_neighbors}")
 
     if sys.argv[1].lower() == 'breadthfirst':
-        best_country = depth_first(neighbors, [], full_transmitter_list[:5])
-        print(best_country)
-
+        starting_list = [[None for i in range(len(neighbors))]]
+        best_country = depth_first(countrylist, full_transmitter_list[:4], starting_list)
+        # print(best_country)
+        writefile = open(sys.argv[3], "w")
+        for i in best_country:
+            writefile.write(i + "\n")
 
     if sys.argv[1] == "random":
         big_list = []

@@ -191,8 +191,7 @@ def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node)
     type = 0
     for type in transmitter_list:
         countrylist[node] = type
-        if check_for_matching_neighbors(countrylist, neighborlist) == 0:
-        # if check_neighbors(neighborlist, type, countrylist):
+        if check_neighbors(neighborlist[node], type, countrylist):
             return(type)
     return(None)
 
@@ -233,7 +232,7 @@ A function to calculate the cost of a given transmitter configuration
 """
 
 
-def cost_from_country_list(countrylist, transmitter_cost, transmitter_list):
+def cost(countrylist, transmitter_cost, transmitter_list):
     cost = 0
     for country in countrylist:
         cost = cost + transmitter_cost[transmitter_list.index(country)]

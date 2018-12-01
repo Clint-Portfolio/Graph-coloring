@@ -18,12 +18,11 @@ sys.path.append(os.path.join(directory, "Data", ""))
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
-from helpers import cost_from_country_list
+from helpers import cost
 from helpers import *
 from greedy import full_greedy
 from algrandom import random_function
 from breadthfirst import breadth_first
-
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
 transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
@@ -42,19 +41,36 @@ if __name__ == '__main__':
     countrylist = land_naar_nummer(countries, neighbors)
 
     if sys.argv[1].lower() == 'greedy':
+        import networkx as nx
+        import matplotlib.pyplot as plt
+        # also dependancies are needed for scipy
         best_country = full_greedy(countrylist, full_transmitter_list, transmitter_cost_list)
         writefile = open(sys.argv[3], "w")
         write_lines = []
         for i in best_country:
             write_lines.append([i, ])
         for i in best_country:
-            writefile.write(f"Cost: {str(cost_from_country_list(i[0], i[1], full_transmitter_list))} \n")
+            writefile.write(f"Cost: {str(cost(i[0], i[1], full_transmitter_list))} \n")
             writefile.write(f"Cost list: {i[1]}\n")
             graph_string = "".join(i[0])
             writefile.write(f"Graph: {graph_string}\n")
             for country in range(len(countries)):
                 writefile.write(countries[country] + " " + i[0][country] + "\n")
             writefile.write("\n\n")
+
+        print(f"\n\n{best_country[0][0]}")
+        gr = []
+        colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
+        country_colors = []
+        for node in range(len(countrylist)):
+            for neighbor in countrylist[node]:
+                gr.append((node, neighbor))
+            country_colors.append(colors[full_transmitter_list.index(best_country[0][0][node])])
+        print(country_colors)
+
+        graph = nx.Graph(gr)
+        nx.draw_kamada_kawai(graph, node_color=country_colors)
+        plt.show()
 
     if sys.argv[1] == "genetic":
         from genetic import genetic
@@ -63,7 +79,7 @@ if __name__ == '__main__':
         print()
         for i in generation[:3]:
             print(i)
-            print(calculate_cost(countrylist_to_transmitter_amount(i, full_transmitter_list[:5]), transmitter_cost))
+            print(cost(i, full_transmitter_list, transmitter_cost_list[0]))
         print()
 
         for list_position in range(0, len(generation)):

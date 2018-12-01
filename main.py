@@ -19,10 +19,10 @@ sys.path.append(os.path.join(directory, "Data", ""))
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
 from helpers import cost_from_country_list
+from helpers import *
 from greedy import full_greedy
 from algrandom import random_function
-from breadthfirst import depth_first
-
+from breadthfirst import breadth_first
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -42,17 +42,16 @@ if __name__ == '__main__':
     countrylist = land_naar_nummer(countries, neighbors)
 
     if sys.argv[1].lower() == 'greedy':
-        best_country = full_greedy(full_transmitter_list, transmitter_cost_list, countrylist)
-
+        best_country = full_greedy(countrylist, full_transmitter_list, transmitter_cost_list)
         writefile = open(sys.argv[3], "w")
         write_lines = []
         for i in best_country:
-            print(f"Wrong connections: {check_for_matching_neighbors(i[0], countrylist)}")
-            write_lines.append([i[0], i[1], calculate_cost(countrylist_to_transmitter_amount(i[0], full_transmitter_list), i[1])])
-        for i in write_lines:
-            writefile.write("Cost: " + str(i[2]) + "\n")
-            writefile.write("Graph: " + "".join(i[0]) + "\n")
-            writefile.write("Transmitter cost list: " + " ".join(str(j) for j in i[1]) + "\n")
+            write_lines.append([i, ])
+        for i in best_country:
+            writefile.write(f"Cost: {str(cost_from_country_list(i[0], i[1], full_transmitter_list))} \n")
+            writefile.write(f"Cost list: {i[1]}\n")
+            graph_string = "".join(i[0])
+            writefile.write(f"Graph: {graph_string}\n")
             for country in range(len(countries)):
                 writefile.write(countries[country] + " " + i[0][country] + "\n")
             writefile.write("\n\n")
@@ -80,7 +79,7 @@ if __name__ == '__main__':
 
     if sys.argv[1].lower() == 'breadthfirst':
         starting_list = [[None for i in range(len(neighbors))]]
-        best_country = depth_first(countrylist, full_transmitter_list[:4], starting_list)
+        best_country = breadth_first(countrylist, full_transmitter_list[:4], starting_list)
         # print(best_country)
         writefile = open(sys.argv[3], "w")
         for i in best_country:

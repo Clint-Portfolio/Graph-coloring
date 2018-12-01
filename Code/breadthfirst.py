@@ -15,7 +15,7 @@ import copy
 # list_color_node = []
 
 # buren en daar stop je 0 in en je lijst van buren. je kijkt in de lijst wat de buren van. recursief
-def depth_first(list_neigbors, transmitter_list, list_color_node, current_node=0):
+def breadth_first(list_neigbors, transmitter_list, list_color_node, current_node=0):
     # list_color_node[current_node] = True
     var = len(list_color_node)
     new_node_color_list = []
@@ -31,7 +31,7 @@ def depth_first(list_neigbors, transmitter_list, list_color_node, current_node=0
     for list in list_color_node:
         for buurland in list_neigbors[current_node]:
             if list[buurland] is None:
-                depth_first(list_neigbors, transmitter_list, list_color_node, buurland)
+                breadth_first(list_neigbors, transmitter_list, list_color_node, buurland)
     # print(list_color_node)
     return(list_color_node)
 

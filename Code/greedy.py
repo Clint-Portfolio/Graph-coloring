@@ -1,5 +1,5 @@
 def full_greedy(neighbor_list, transmitter_list, transmitter_cost_list):
-    from helpers import greedy_regular, cost_from_country_list
+    from helpers import greedy_regular, cost
     countrylist = []
     for most_neighbored_countries in range(0, len(neighbor_list)):
         for starting_node in range(0, len(neighbor_list)):
@@ -10,11 +10,11 @@ def full_greedy(neighbor_list, transmitter_list, transmitter_cost_list):
 
     for country in countrylist:
         for transmitter_cost in transmitter_cost_list:
-            country_cost = cost_from_country_list(country, transmitter_cost, transmitter_list)
+            country_cost = cost(country, transmitter_cost, transmitter_list)
             if country_cost == lowest_cost:
                 lowest_cost_positions.append([country, transmitter_cost])
             elif country_cost < lowest_cost:
-                lowest_cost = cost_from_country_list(country, transmitter_cost, transmitter_list)
+                lowest_cost = cost(country, transmitter_cost, transmitter_list)
                 lowest_cost_positions = [[country, transmitter_cost]]
 
     print()

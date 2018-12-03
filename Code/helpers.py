@@ -182,21 +182,26 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
 
 def check_neighbors(neighbors_of_node, transmitter_type, countrylist):
     for neighbor in neighbors_of_node:
+        # print(neighbor, countrylist[neighbor], transmitter_type, end = ";  ")
         if countrylist[neighbor] == transmitter_type:
+            # print("False", end = "  ")
             return False
+    # print("True", end = "  ")
     return True
 
 
 def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
-    type = 0
+    # print(f"\nNode {node}:")
     for type in transmitter_list:
-        countrylist[node] = type
         if check_neighbors(neighborlist[node], type, countrylist):
-            return(type)
-    return(None)
+            # print(type)
+            return type
+    # print("None")
+    return None
 
 
 def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neighbors=0):
+    # print(f"\n\n\nNew iteration\n\n\n")
     neighborcount = 0
     most_neighbored_countries = []
 
@@ -306,18 +311,10 @@ def visualise_graph(countrylist, neighborlist, transmitter_list, transmitter_col
     for node in range(len(countrylist)):
         for neighbor in neighborlist[node]:
             gr.append((node, neighbor))
-        country_colors.append(transmitter_colors[transmitter_list.index(countrylist[node])])
-    print()
-    print(country_colors)
-    for i in range(len(countrylist)):
-        print(i, countrylist[i], country_colors[i])
-    dic = {}
-    for i in list(range(len(countrylist))):
-        dic[i] = country_colors[i]
-    print(dic)
     graph = nx.Graph(gr)
-    sorted(nx.Graph(gr))
-    graph = nx.relabel_nodes(graph, dic)
-    print("edges added")
-    nx.draw(graph, node_color=country_colors, with_labels=True)
+
+    for node in graph.nodes():
+        country_colors.append(transmitter_colors[transmitter_list.index(countrylist[node])])
+
+    nx.draw_kamada_kawai(graph, node_color=country_colors, with_labels=True)
     plt.show()

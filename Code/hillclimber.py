@@ -22,28 +22,8 @@ if __name__ == '__main__':
     colors = ['blue', 'green', 'yellow', 'red', 'purple']
     neighborlist = generate_triple(True)
     countrylist = generate_random_country(neighborlist, transmitter_list)
-
-
-
     import networkx as nx
     import matplotlib.pyplot as plt
-    gr = []
-    country_colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink', 'black', 'white', 'gold']
-    for node in range(len(countrylist)):
-        for neighbor in neighborlist[node]:
-            gr.append((node, neighbor))
-        # country_colors.append(transmitter_colors[transmitter_list.index(countrylist[node])])
-    print()
-    print(country_colors)
-    for i in range(len(countrylist)):
-        print(i, countrylist[i], country_colors[i])
-    graph = nx.Graph(gr)
-    sorted(nx.Graph(gr))
-    print("edges added")
-    nx.draw(graph, node_color=country_colors, with_labels=True)
-    plt.show()
-
-
 
     print(countrylist)
     print(check_for_matching_neighbors(countrylist, neighborlist))
@@ -55,8 +35,4 @@ if __name__ == '__main__':
     print("  " + countrylist[-2])
     print()
 
-
-
-
-
-    # visualise_graph(countrylist, neighborlist, transmitter_list, colors)
+    visualise_graph(countrylist, neighborlist, transmitter_list, colors)

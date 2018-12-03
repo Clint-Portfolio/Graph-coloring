@@ -282,3 +282,42 @@ def check_for_matching_neighbors(countrylist, neighborlist):
                 if countrylist[country] == countrylist[neighbor]:
                     matching += 1
     return(matching)
+
+def generate_random_country(neighborlist, transmitter_list):
+    import random
+    countrylist = [None]
+    while None in countrylist:
+        countrylist = [None for i in range(len(neighborlist))]
+        countryshuffle = list(range(len(countrylist)))
+        random.shuffle(countryshuffle)
+        for country in countryshuffle:
+            random.shuffle(transmitter_list)
+            for transmitter_type in transmitter_list:
+                if check_neighbors(neighborlist[country], transmitter_type, countrylist):
+                    countrylist[country] = transmitter_type
+    return countrylist
+
+
+def visualise_graph(countrylist, neighborlist, transmitter_list, transmitter_colors):
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    gr = []
+    country_colors = []
+    for node in range(len(countrylist)):
+        for neighbor in neighborlist[node]:
+            gr.append((node, neighbor))
+        country_colors.append(transmitter_colors[transmitter_list.index(countrylist[node])])
+    print()
+    print(country_colors)
+    for i in range(len(countrylist)):
+        print(i, countrylist[i], country_colors[i])
+    dic = {}
+    for i in list(range(len(countrylist))):
+        dic[i] = country_colors[i]
+    print(dic)
+    graph = nx.Graph(gr)
+    sorted(nx.Graph(gr))
+    graph = nx.relabel_nodes(graph, dic)
+    print("edges added")
+    nx.draw(graph, node_color=country_colors, with_labels=True)
+    plt.show()

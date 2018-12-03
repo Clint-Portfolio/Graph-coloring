@@ -11,7 +11,7 @@ def provinces(INPUT_CSV):
         list_neighbors = []
         # loop over lines to get (neighboring) provinces
         for line in lines:
-            split_list = line.split(';')
+            split_list = line.split('; ')
             provinces = split_list[0]
             # print(type(provinces))
 
@@ -19,7 +19,6 @@ def provinces(INPUT_CSV):
             list_provinces.append(provinces)
 
             province_neigbours = split_list[1].split(', ')
-
             province_neigbours[-1] = province_neigbours[-1].strip()
             list_neighbors.append(province_neigbours)
 

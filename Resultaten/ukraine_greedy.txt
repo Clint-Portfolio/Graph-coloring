@@ -1,30 +1,30 @@
-Cost: 505
-Graph: AAABBACBCBADCBDCAACBDABBA
-Transmitter cost list: 19 20 21 23 36 37 38
-Vinnytska A
+Cost: 502 
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: BAABAABBCAACBABBAACCCCDDA
+Vinnytska B
 Volynska A
 Dnipropetrovska A
 Donetska B
-Zhytomyrska B
+Zhytomyrska A
 Zakarpatska A
-Zaporizka C
+Zaporizka B
 Ivano-frankivska B
 Kyivska C
-Kirovohradska B
+Kirovohradska A
 Luhanska A
-Lvivska D
-Mykolaivska C
-Odeska B
-Poltavska D
-Rivnenska C
+Lvivska C
+Mykolaivska B
+Odeska A
+Poltavska B
+Rivnenska B
 Sumska A
 Ternopilska A
 Kharkivska C
-Khersonska B
-Khmelnytska D
-Cherkaska A
-Chernivetska B
-Chernihivska B
+Khersonska C
+Khmelnytska C
+Cherkaska C
+Chernivetska D
+Chernihivska D
 Crimea A
 
 

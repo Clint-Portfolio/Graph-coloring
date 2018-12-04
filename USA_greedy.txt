@@ -1,0 +1,55 @@
+Cost: 1049 
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: AAAGBCAABCADDABABAABBBABCADCCBBCABCDADCBCDCFACBACB
+Alabama A
+Alaska A
+Arizona A
+Arkansas G
+California B
+Colorado C
+Connecticut A
+Delaware A
+Florida B
+Georgia C
+Hawaii A
+Idaho D
+Illinois D
+Indiana A
+Iowa B
+Kansas A
+Kentucky B
+Louisiana A
+Maine A
+Maryland B
+Massachusetts B
+Michigan B
+Minnesota A
+Mississippi B
+Missouri C
+Montana A
+Nebraska D
+Nevada C
+New Hampshire C
+New Jersey B
+New Mexico B
+New York C
+North Carolina A
+North Dakota B
+Ohio C
+Oklahoma D
+Oregon A
+Pennsylvania D
+Rhode Island C
+South Carolina B
+South Dakota C
+Tennessee D
+Texas C
+Utah F
+Vermont A
+Virginia C
+Washington B
+West Virginia A
+Wisconsin C
+Wyoming B
+
+

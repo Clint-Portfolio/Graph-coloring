@@ -13,16 +13,17 @@ import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "Code"))
 sys.path.append(os.path.join(directory, "Code", ""))
+directory = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(directory, "Data"))
+sys.path.append(os.path.join(directory, "Data", ""))
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
-from helpers import cost_from_country_list
+from helpers import cost
+from helpers import *
 from greedy import full_greedy
 from algrandom import random_function
-from breadthfirst import depth_first
-
-import pandas as pd
-
+from breadthfirst import breadth_first
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
 transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
@@ -36,8 +37,6 @@ def print_histogram(filename):
     pd.read_csv(filename)
 
 
-
-
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
@@ -48,20 +47,36 @@ if __name__ == '__main__':
     countrylist = land_naar_nummer(countries, neighbors)
 
     if sys.argv[1].lower() == 'greedy':
-        best_country = full_greedy(full_transmitter_list, transmitter_cost_list, countrylist)
-
+        import networkx as nx
+        import matplotlib.pyplot as plt
+        # also dependancies are needed for scipy
+        best_country = full_greedy(countrylist, full_transmitter_list, transmitter_cost_list)
         writefile = open(sys.argv[3], "w")
         write_lines = []
         for i in best_country:
-            print(f"Wrong connections: {check_for_matching_neighbors(i[0], countrylist)}")
-            write_lines.append([i[0], i[1], calculate_cost(countrylist_to_transmitter_amount(i[0], full_transmitter_list), i[1])])
-        for i in write_lines:
-            writefile.write("Cost: " + str(i[2]) + "\n")
-            writefile.write("Graph: " + "".join(i[0]) + "\n")
-            writefile.write("Transmitter cost list: " + " ".join(str(j) for j in i[1]) + "\n")
+            write_lines.append([i, ])
+        for i in best_country:
+            writefile.write(f"Cost: {str(cost(i[0], i[1], full_transmitter_list))} \n")
+            writefile.write(f"Cost list: {i[1]}\n")
+            graph_string = "".join(i[0])
+            writefile.write(f"Graph: {graph_string}\n")
             for country in range(len(countries)):
                 writefile.write(countries[country] + " " + i[0][country] + "\n")
             writefile.write("\n\n")
+
+        print(f"\n\n{best_country[0][0]}")
+        gr = []
+        colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
+        country_colors = []
+        for node in range(len(countrylist)):
+            for neighbor in countrylist[node]:
+                gr.append((node, neighbor))
+            country_colors.append(colors[full_transmitter_list.index(best_country[0][0][node])])
+        print(country_colors)
+
+        graph = nx.Graph(gr)
+        nx.draw_kamada_kawai(graph, node_color=country_colors)
+        plt.show()
 
     if sys.argv[1] == "genetic":
         from genetic import genetic
@@ -70,7 +85,7 @@ if __name__ == '__main__':
         print()
         for i in generation[:3]:
             print(i)
-            print(calculate_cost(countrylist_to_transmitter_amount(i, full_transmitter_list[:5]), transmitter_cost))
+            print(cost(i, full_transmitter_list, transmitter_cost_list[0]))
         print()
 
         for list_position in range(0, len(generation)):
@@ -85,9 +100,12 @@ if __name__ == '__main__':
                   "{list_position}: {wrong_neighbors}")
 
     if sys.argv[1].lower() == 'breadthfirst':
-        best_country = depth_first(neighbors, [], full_transmitter_list[:5])
-        print(best_country)
-
+        starting_list = [[None for i in range(len(neighbors))]]
+        best_country = breadth_first(countrylist, full_transmitter_list[:4], starting_list)
+        # print(best_country)
+        writefile = open(sys.argv[3], "w")
+        for i in best_country:
+            writefile.write(i + "\n")
 
     if sys.argv[1] == "random":
         # big list ocntains the letters with the random function

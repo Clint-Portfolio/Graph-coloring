@@ -1,5 +1,5 @@
 from helpers import generate_triple, calculate_cost, countrylist_to_transmitter_amount
-
+import random
 transmitter_list = ["A", "B", "C", "D"]
 full_transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41], [19, 20, 21, 23, 36, 37, 38], [16, 17, 31, 33, 36, 56, 57], [3, 34, 36, 39, 41, 43, 58]]
 transmitter_cost = full_transmitter_cost_list[1]
@@ -31,7 +31,6 @@ The generation is then put into the 'breeding ground' according to fitness
 
 
 def cull(generation_score_list):
-    import random
     average = 0
     for i in generation_score_list:
         average += i[1]
@@ -54,7 +53,6 @@ def cull(generation_score_list):
 
 
 def breed(parent_list, transmitter_list, generation_size):
-    import random
     new_generation = []
     children = []
 
@@ -67,7 +65,6 @@ def breed(parent_list, transmitter_list, generation_size):
     return(children)
 
 def mutation(child_list, mutation_chance=0):
-    import random
     for child in range(len(child_list)):
         for node in range(len(child_list[child])):
             if mutation_chance > random.randint(0, 10000):
@@ -108,10 +105,10 @@ def genetic(transmitter_list, neighbor_list=generate_triple(True), generation_si
 
 
 if __name__ == '__main__':
-    child_list = genetic(transmitter_list, generate_triple(True), 200, 50000, 5)
+    child_list = genetic(transmitter_list, generate_triple(True), 200, 5000, 5)
     child_list = score(generate_triple(True), child_list, transmitter_cost, transmitter_list)
     print()
-    for i in child_list[0:2]:
+    for i in child_list[-3:]:
         print(i[1])
         print(f" {i[0][-3]}-{i[0][-2]}")
         print("".join(i[0][:-3]))

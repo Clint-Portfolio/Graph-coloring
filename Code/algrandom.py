@@ -21,7 +21,6 @@ def random_function(provinces, transmitters):
         return(zendmast_met_land)
 
 if __name__ == "__main__":
-        # provinces = (provinces("../data/buurlanden_NL.csv"))[0]
         big_list = []    
         for i in range(100000):
                 big_list.append(random_function(provinces,['A', 'B', 'C', 'D', 'E']))

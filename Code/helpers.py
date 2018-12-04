@@ -11,7 +11,7 @@ def provinces(INPUT_CSV):
         list_neighbors = []
         # loop over lines to get (neighboring) provinces
         for line in lines:
-            split_list = line.split(';')
+            split_list = line.split('; ')
             provinces = split_list[0]
             # print(type(provinces))
 
@@ -19,7 +19,6 @@ def provinces(INPUT_CSV):
             list_provinces.append(provinces)
 
             province_neigbours = split_list[1].split(', ')
-
             province_neigbours[-1] = province_neigbours[-1].strip()
             list_neighbors.append(province_neigbours)
 
@@ -180,48 +179,50 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
     return(countrytranslist)
 
 
-def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
-    type = 0
-    for type in transmitter_list:
-        neighbortypes = []
-        for neighbor in [countrylist[i] for i in neighborlist]:
-            if neighbor != None:
-                neighbortypes.append(neighbor)
-        if type not in neighbortypes:
-            return(type)
-    return(countrylist[node])
+def check_neighbors(neighbors_of_node, transmitter_type, countrylist):
+    for neighbor in neighbors_of_node:
+        # print(neighbor, countrylist[neighbor], transmitter_type, end = ";  ")
+        if countrylist[neighbor] == transmitter_type:
+            # print("False", end = "  ")
+            return False
+    # print("True", end = "  ")
+    return True
 
+
+def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
+    # print(f"\nNode {node}:")
+    for type in transmitter_list:
+        if check_neighbors(neighborlist[node], type, countrylist):
+            # print(type)
+            return type
+    # print("None")
+    return None
 
 
 def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neighbors=0):
+    # print(f"\n\n\nNew iteration\n\n\n")
     neighborcount = 0
     most_neighbored_countries = []
+
     # find node with the most connections
     for node in neighborlist:
         if len(node) > neighborcount:
             neighborcount = len(node)
-
     # add most neighbored countries to list
     for node in neighborlist:
         if len(node) >= neighborcount - find_most_neighbors:
             most_neighbored_countries.append(neighborlist.index(node))
 
     country_transmitter_list = [None for i in range(len(neighborlist))]
-
     for node in most_neighbored_countries:
-        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list[::-1], node)
+        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list[::-1], node)
 
     for node in range(len(neighborlist)):
         if country_transmitter_list[node] is None:
-            country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list, node)
-
-    if check_for_matching_neighbors(country_transmitter_list, neighborlist) > 0:
-        print("Wrong country found:")
-        print(f"Starting Node: {starting_node}, find most: {find_most_neighbors}, country: {country_transmitter_list}")
-        print(check_for_matching_neighbors(country_transmitter_list, neighborlist))
+            country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
 
     for node in most_neighbored_countries:
-        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist[node], transmitter_list, node)
+        country_transmitter_list[node] = changetype_greedy_regular(country_transmitter_list, neighborlist, transmitter_list, node)
 
     if None in country_transmitter_list:
         print("No suitable options found")
@@ -235,7 +236,7 @@ A function to calculate the cost of a given transmitter configuration
 """
 
 
-def cost_from_country_list(countrylist, transmitter_cost, transmitter_list):
+def cost(countrylist, transmitter_cost, transmitter_list):
     cost = 0
     for country in countrylist:
         cost = cost + transmitter_cost[transmitter_list.index(country)]
@@ -279,7 +280,40 @@ def check_for_matching_neighbors(countrylist, neighborlist):
     matching = 0
     for country in range(len(countrylist)):
         for neighbor in neighborlist[country]:
-            if neighbor > country:
+            if countrylist[neighbor] is None:
+                pass
+            elif neighbor > country:
                 if countrylist[country] == countrylist[neighbor]:
                     matching += 1
     return(matching)
+
+def generate_random_country(neighborlist, transmitter_list):
+    import random
+    countrylist = [None]
+    while None in countrylist:
+        countrylist = [None for i in range(len(neighborlist))]
+        countryshuffle = list(range(len(countrylist)))
+        random.shuffle(countryshuffle)
+        for country in countryshuffle:
+            random.shuffle(transmitter_list)
+            for transmitter_type in transmitter_list:
+                if check_neighbors(neighborlist[country], transmitter_type, countrylist):
+                    countrylist[country] = transmitter_type
+    return countrylist
+
+
+def visualise_graph(countrylist, neighborlist, transmitter_list, transmitter_colors):
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    gr = []
+    country_colors = []
+    for node in range(len(countrylist)):
+        for neighbor in neighborlist[node]:
+            gr.append((node, neighbor))
+    graph = nx.Graph(gr)
+
+    for node in graph.nodes():
+        country_colors.append(transmitter_colors[transmitter_list.index(countrylist[node])])
+
+    nx.draw_kamada_kawai(graph, node_color=country_colors, with_labels=True)
+    plt.show()

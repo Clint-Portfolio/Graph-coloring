@@ -1,0 +1,30 @@
+Cost: 502 
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: BAABAABBCAACBABBAACCCCDDA
+Vinnytska B
+Volynska A
+Dnipropetrovska A
+Donetska B
+Zhytomyrska A
+Zakarpatska A
+Zaporizka B
+Ivano-frankivska B
+Kyivska C
+Kirovohradska A
+Luhanska A
+Lvivska C
+Mykolaivska B
+Odeska A
+Poltavska B
+Rivnenska B
+Sumska A
+Ternopilska A
+Kharkivska C
+Khersonska C
+Khmelnytska C
+Cherkaska C
+Chernivetska D
+Chernihivska D
+Crimea A
+
+

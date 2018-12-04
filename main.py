@@ -9,6 +9,7 @@ main.py random Data/ukraine_neighbor_provinces.csv random.txt
 # Add the file-structure to paths
 import os
 import sys
+
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "Code"))
 sys.path.append(os.path.join(directory, "Code", ""))
@@ -20,6 +21,7 @@ from greedy import full_greedy
 from algrandom import random_function
 from breadthfirst import depth_first
 
+import pandas as pd
 
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
@@ -27,6 +29,13 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
                          [19, 20, 21, 23, 36, 37, 38],
                          [16, 17, 31, 33, 36, 56, 57],
                          [3, 34, 36, 39, 41, 43, 58]]
+
+
+def print_histogram(filename):
+    print(filename)
+    pd.read_csv(filename)
+
+
 
 
 if __name__ == '__main__':
@@ -91,9 +100,15 @@ if __name__ == '__main__':
             for letter in country:
                 writefile.write(letter)
 
-            writefile.write("; ")
+            writefile.write(";")
             for transmitter_cost in transmitter_cost_list:
 
                 writefile.write(str(cost_from_country_list(country, transmitter_cost, full_transmitter_list[:5])))
-                writefile.write("; ")
+                writefile.write(";")
+            writefile.write(str(check_for_matching_neighbors(country, countrylist)))
             writefile.write("\n")
+
+    print_histogram(sys.argv[3])
+
+
+

@@ -108,7 +108,7 @@ if __name__ == '__main__':
             writefile.write(i + "\n")
 
     if sys.argv[1] == "random":
-        # big list ocntains the letters with the random function
+        # big list contains the letters with the random function
         big_list = []
         for i in range(100):
                 big_list.append(random_function(countries, full_transmitter_list[:5]))

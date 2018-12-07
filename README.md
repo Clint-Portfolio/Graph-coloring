@@ -71,7 +71,9 @@ It is possible that our algorithms are not advanced enough to solve the four col
 *Greedy:*
 
 Cost: 502
+
 Cost list: [19, 20, 21, 23, 36, 37, 38]
+
 ![Ukraine greedy](/Results/Ukraine_greedy.jpg)
 
 *Hill climber:*
@@ -81,15 +83,22 @@ Cost list: [19, 20, 21, 23, 36, 37, 38]
 **USA:**
 
 *Greedy:*
+
 Cost: 1081
+
 Cost list: [19, 20, 21, 23, 36, 37, 38]
+
 ![USA greedy](/Results/USA_greedy.jpg)
 
 
 *Russia:*
+
 Greedy:
+
 Cost: 1646
+
 Cost list: [19, 20, 21, 23, 36, 37, 38]
+
 ![Russia greedy](/Results/Russia_greedy.jpg)
 
 It is noted that the greedy algorithms prefer a less deviating cost list.

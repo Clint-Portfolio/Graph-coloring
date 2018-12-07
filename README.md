@@ -11,7 +11,15 @@ c) It is cheaper to have fewer transmitter types, but also to have approximately
 
 ### Assignment 2
 There are four possible cost schemes. For each country, see which cost scheme is the most advantageous
-![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
+
+ | A | B | C | D | E | F | G
+-|---|---|---|---|---|---|---
+Cost 1 | 12 | 26 | 27 | 30 | 37 | 39 | 41
+Cost 2 | 19 | 20 | 21 | 23 | 36 | 37 | 38
+Cost 3 | 16 | 17 | 31 | 33 | 36 | 56 | 57
+Cost 4: | 3  | 34 | 36 | 39 | 41 | 43 | 58
+
+![Map of Russia](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
 
 # Getting Started:
 ## Prerequisites:
@@ -38,12 +46,12 @@ Minor Programming UvA.*
 # Upper bound cost:
 The most expensive solution would be that every district has the most expensive transmitter.
 
-That would give: 58 * amount of provinces
+That would give: (most expensive transmitter) * (amount of provinces)
 
 # Lower bound cost:
 The most inexpensive solution would be that every district has the least expensive transmitter.
 
-That would five: 3 * amount of provinces
+That would give: (cheapest transmitter) * (amount of provinces)
 
 # The four colour theorem
 

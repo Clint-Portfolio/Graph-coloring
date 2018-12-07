@@ -6,6 +6,8 @@ The CSV files with the coutry names contain the data of the provinces and the ne
 
 The CSV files with the country name and '_numbers' is the same file, only this time there are only numbers. 
 
+The CSV file with random contains the solutions by N=1000.000, data is used for the histograms. 
+
 # Maps
 The maps are png files with a image of the map of that country. It is used for a general understanding of the country and all the neighbournodes. 
 

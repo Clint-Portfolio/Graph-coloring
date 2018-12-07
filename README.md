@@ -38,7 +38,7 @@ This code is written in **Python3.7.1** . The necessary packages to be able to s
 The Python scrips can be found in the folder "Code", input values in the map "Data", results in "Results".
 
 ## Authors:
-Clint, Rosa, Liora
+Clint, Rosa
 AKA *Team ¯\_(ツ)_/¯'); DROP TABLE teams;--*
 
 Acknowledgments:
@@ -131,6 +131,17 @@ It implements a hill climber technique as it memorizes the cheapest graph for ea
 # results
 
 **Ukraine:**
+
+*Random (to give an indication of the statespace of Ukraine):*
+
+Valid results that are found with a N=1000.000: 5.
+Average costs valid results: 604,4
+Lowest cost (valid result): 566
+Cost list: 19, 20, 21, 23, 36, 37, 38
+
+![Ukraine random](/histogram_random_cost.png)
+
+![Ukraine random](/histogram_random_wrong_nodes.png)
 
 *Greedy:*
 

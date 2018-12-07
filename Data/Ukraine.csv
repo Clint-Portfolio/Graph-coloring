@@ -1,4 +1,6 @@
 Vinnytska; Kirovohradska, Kyivska, Cherkaska, Khmelnytska, Odeska, Zhytomyrska
+Kirovohradska; Dnipropetrovska, Cherkaska, Vinnytska, Poltavska, Mykolaivska
+Poltavska; Kirovohradska, Dnipropetrovska, Kyivska, Cherkaska, Sumska, Kharkivska, Chernihivska
 Volynska; Rivnenska, Lvivska
 Dnipropetrovska; Kirovohradska, Zaporizka, Donetska, Khersonska, Poltavska, Kharkivska, Mykolaivska
 Donetska; Zaporizka, Dnipropetrovska, Luhanska, Kharkivska
@@ -7,12 +9,10 @@ Zakarpatska; Lvivska, Ivano-frankivska
 Zaporizka; Dnipropetrovska, Donetska, Khersonska
 Ivano-frankivska; Zakarpatska, Chernivetska, Lvivska, Ternopilska
 Kyivska; Cherkaska, Vinnytska, Poltavska, Chernihivska, Zhytomyrska
-Kirovohradska; Dnipropetrovska, Cherkaska, Vinnytska, Poltavska, Mykolaivska
 Luhanska; Donetska, Kharkivska
 Lvivska; Rivnenska, Ternopilska, Volynska, Ivano-frankivska, Zakarpatska
 Mykolaivska; Kirovohradska, Dnipropetrovska, Khersonska, Odeska
 Odeska; Vinnytska, Mykolaivska
-Poltavska; Kirovohradska, Dnipropetrovska, Kyivska, Cherkaska, Sumska, Kharkivska, Chernihivska
 Rivnenska; Ternopilska, Volynska, Khmelnytska, Lvivska, Zhytomyrska
 Sumska; Kharkivska, Poltavska, Chernihivska
 Ternopilska; Rivnenska, Chernivetska, Khmelnytska, Lvivska, Ivano-frankivska

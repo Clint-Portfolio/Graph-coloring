@@ -4,7 +4,7 @@ Argument 2 is the algorithm
 Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
 An example would be:
-main.py random Data/Ukraine_numbers.csv random.txt
+python main.py random Data/Ukraine_numbers.csv random.csv
 """
 # Add the file-structure to paths
 import os
@@ -13,33 +13,43 @@ import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "Code"))
 sys.path.append(os.path.join(directory, "Code", ""))
-directory = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(directory, "Data"))
-sys.path.append(os.path.join(directory, "Data", ""))
+os.path.join(directory, "Data")
+os.path.join(directory, "Data", "")
 
 from helpers import provinces, land_naar_nummer, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
-from helpers import cost
-from helpers import *
+from helpers import cost, visualise_graph
 from greedy import full_greedy
 from algrandom import random_function
 from breadthfirst import breadth_first
+from histogram import histogram
 
 full_transmitter_list = ["A", "B", "C", "D", "E", "F", "G"]
 transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
                          [19, 20, 21, 23, 36, 37, 38],
                          [16, 17, 31, 33, 36, 56, 57],
                          [3, 34, 36, 39, 41, 43, 58]]
+colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4:
+
+    if sys.argv[1].lower() == 'histogram':
+        histogram(sys.argv[2])
+
+    elif len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
         print("Algorithms implemented are: greedy, genetic, breadthfirst and random")
         exit(1)
 
     countries, neighbors = provinces(sys.argv[2])
     countrylist = land_naar_nummer(countries, neighbors)
+
+    if sys.argv[1].lower() == 'plot':
+        readfile = open(sys.argv[3], 'r')
+        lines = readfile.readlines()
+        for i in lines[:10]:
+            visualise_graph(list(i[:-1]), countrylist, full_transmitter_list, colors)
 
     if sys.argv[1].lower() == 'greedy':
         import networkx as nx
@@ -61,7 +71,6 @@ if __name__ == '__main__':
 
         print(f"\n\n{best_country[0][0]}")
         gr = []
-        colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
         country_colors = []
         for node in range(len(countrylist)):
             for neighbor in countrylist[node]:
@@ -91,8 +100,8 @@ if __name__ == '__main__':
                     neighbor = generation[list_position][neighbor]
                     if country == neighbor:
                         wrong_neighbors += 1
-            print(f"Wrong neighbors of position"
-                  "{list_position}: {wrong_neighbors}")
+            print(f"Wrong neighbors of position \
+                   {list_position}: {wrong_neighbors}")
 
     if sys.argv[1].lower() == 'breadthfirst':
         starting_list = [[None for i in range(len(neighbors))]]
@@ -122,5 +131,18 @@ if __name__ == '__main__':
             writefile.write("\n")
 
 
-
-
+    if sys.argv[1] == "depthfirst":
+        from depthfirst import depth_first, num_to_colorlist
+        depth_first(countrylist, full_transmitter_list[:4])
+        # writefile = open(sys.argv[3], "w")
+        # for country in all_countries:
+        #     writefile.write(f"{country}")
+        #
+        # gr = []
+        # colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
+        # country_colors = []
+        # for node in range(len(countrylist)):
+        #     for neighbor in countrylist[node]:
+        #         gr.append((node, neighbor))
+        #     country_colors.append(colors[full_transmitter_list.index(all_countries[0][node])])
+        # print(country_colors)

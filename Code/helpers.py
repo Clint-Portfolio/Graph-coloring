@@ -182,11 +182,8 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
 
 def check_neighbors(neighbors_of_node, transmitter_type, countrylist):
     for neighbor in neighbors_of_node:
-        # print(neighbor, countrylist[neighbor], transmitter_type, end = ";  ")
         if countrylist[neighbor] == transmitter_type:
-            # print("False", end = "  ")
             return False
-    # print("True", end = "  ")
     return True
 
 

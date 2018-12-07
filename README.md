@@ -11,7 +11,15 @@ c) It is cheaper to have fewer transmitter types, but also to have approximately
 
 ### Assignment 2
 There are four possible cost schemes. For each country, see which cost scheme is the most advantageous
-![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
+
+Transmitters | A | B | C | D | E | F | G
+-------------|---|---|---|---|---|---|---
+Cost 1 | 12 | 26 | 27 | 30 | 37 | 39 | 41
+Cost 2 | 19 | 20 | 21 | 23 | 36 | 37 | 38
+Cost 3 | 16 | 17 | 31 | 33 | 36 | 56 | 57
+Cost 4: | 3  | 34 | 36 | 39 | 41 | 43 | 58
+
+![Map of Russia](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bla_bla_Russia.svg/1280px-Bla_bla_Russia.svg.png)
 
 # Getting Started:
 ## Prerequisites:
@@ -19,12 +27,15 @@ This code is written in **Python3.7.1** . The necessary packages to be able to s
 
 `pip install -r requirements.txt `
 
+## Starting the program:
+    python main.py greedy Data/Ukraine.csv Greedyukraine.csv
+
 ## Structure:
-The Python scrips can be found in the folder "Code", input values in the map "Data".
+The Python scrips can be found in the folder "Code", input values in the map "Data", results in "Results".
 
 ## Authors:
-Clint, Rosa, Liora
-AKA *Team drop.table.nodes*
+Clint, Rosa
+AKA *Team ¯\_(ツ)_/¯'); DROP TABLE teams;--*
 
 Acknowledgments:
 *Arne,
@@ -32,25 +43,77 @@ StackOverflow,
 Wikipedia &
 Minor Programming UvA.*
 
-# Upperbound cost:
+# Upper bound cost:
 The most expensive solution would be that every district has the most expensive transmitter.
 
-That would give: 58 * amount_of_provinces
+That would give: (most expensive transmitter) * (amount of provinces)
 
-# Lowerbound cost:
-The most inexpensive solution would be that every district has the least expensive transmitter. 
+# Lower bound cost:
+The most inexpensive solution would be that every district has the least expensive transmitter.
 
-That would five: 3 * amount_of_provinces
+That would give: (cheapest transmitter) * (amount of provinces)
 
-# Statespace
-The statespace of the amount of possibilities for transmitters in the provinces is:
+# The four colour theorem
 
-7 ^ amound_of_provinces.
+The four colour theorem was one of the first mathematical problems solved using a computer. The theorem states that any "map",
+as represented by a planar graph, can be coloured with just 4 colours so that the
+# State space
+The general size of a state space in this problem is:
 
-We could tight the statespace, since the fourcolourproblem has shown that a solution is possible with only four colors. That will give us the following statespace:
+(number of transmitters) ^ (amount of provinces)
 
-4 ^ amount_of_provinces.
+Thus, as Ukraine has 25 provinces, the size of the initial problem is:
 
-Only, it is possible that our algoritms are advandighed enough to solve the fourcolor problem, so that we will need more colors. 
+7 ^ 25
+
+We can shrink the state space, since the four colour theorem has shown that a solution is possible with only four colours. That will give us the following state space size:
+
+4 ^ amount of provinces.
+
+It is possible that our algorithms are not advanced enough to solve the four colour theorem, so that we will need more colours. This will be discussed in the results section.
+
+# results
+
+**Ukraine:**
+
+*Random (to give an indication of the statespace of Ukraine):*
+
+Valid results that are found with a N=1000.000: 5.
+Average costs valid results: 604,4
+Lowest cost (valid result): 566
+Cost list: 19, 20, 21, 23, 36, 37, 38
+
+*Greedy:*
+
+Cost: 502
+
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+
+![Ukraine greedy](/Results/Ukraine_greedy.jpg)
+
+*Hill climber:*
 
 
+
+**USA:**
+
+*Greedy:*
+
+Cost: 1081
+
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+
+![USA greedy](/Results/USA_greedy.jpg)
+
+
+*Russia:*
+
+Greedy:
+
+Cost: 1646
+
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+
+![Russia greedy](/Results/russia_greedy.jpg)
+
+It is noted that the greedy algorithms prefer a less deviating cost list.

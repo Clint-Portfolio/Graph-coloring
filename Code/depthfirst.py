@@ -1,50 +1,38 @@
-def is_finished(countrylist, last_color):
-    for country in countrylist:
-        if country == last_color:
-            return False
-    return True
-
-
-def num_to_colorlist(transmitter_list, country_length, number):
-    digits = []
-    colorlist = []
-    length_transmitter_list = len(transmitter_list)
-    for i in range(country_length):
-        digits.append(number % length_transmitter_list)
-        number //= length_transmitter_list
-    for i in digits:
-        colorlist.append(transmitter_list[i])
-    return colorlist
-
-# def check_correct_config(colorlist, neighborlist):
-#     configfile = open("configs.txt", 'a')
-#     if check_for_matching_neighbors(iterating_list, neighborlist) == 0:
-#         all_possible_configurations.append(iterating_list)
-#         configfile.write(f"{iterating_list}\n")
+def matching_neighbors(countrylist, neighborlist):
+    country_number_list = []
+    for country_number in range(len(countrylist)):
+        for neighbor in [i for i in neighborlist[country_number] if i > country_number]:
+            if countrylist[country_number] == countrylist[neighbor]:
+                country_number_list.append(country_number)
+                return [country_number]
+    return country_number_list
 
 
 def worker_function(transmitter_list, neighborlist, worker_id, start, stop):
+    import copy
     from helpers import check_for_matching_neighbors
-    logfile = open(f"logfile_{worker_id}.txt", 'w')
-    logfile.write(f"from {start}; to {stop}\n")
-    write = False
-    for number in range(start, stop):
-        if number % 1000 == 0:
-            write = True
-        digits = []
+    log = open(f"winninglog_worker{worker_id}.txt", 'a')
+    log.write(f"Start: {start}, Stop: {stop}\n")
+    while start <= stop:
+        # print(f"\n\n\n")
+        number = copy.deepcopy(start)
+        countrylist = []
         length_transmitter_list = len(transmitter_list)
         for i in range(len(neighborlist)):
-            digits.append(transmitter_list[number % length_transmitter_list])
-            number //= length_transmitter_list
-        if check_for_matching_neighbors(digits, neighborlist) == 0:
-            configfile = open("configs.txt", 'a')
-            configfile.write(f"{digits}\n")
-            print(digits)
-        if write:
-            digits = "".join(digits)
-            logfile.write(f"{digits}\n")
-            write = False
-
+            if number == 0:
+                countrylist.append(transmitter_list[0])
+            else:
+                countrylist.append(transmitter_list[number % length_transmitter_list])
+                number //= length_transmitter_list
+        matching_neighbor_list = matching_neighbors(countrylist, neighborlist)
+        if matching_neighbor_list == []:
+            write = "".join(countrylist)
+            log.write(f"{write} {start}\n")
+            start += 1
+        else:
+            for country in matching_neighbor_list:
+                # if neighbor N has a matching neighor, go forward by len(transmitter_list) ^ N
+                start += len(transmitter_list)**country
 
 
 
@@ -60,7 +48,7 @@ def depth_first(neighborlist, transmitter_list):
     job_4 = mp.Process(target=worker_function, args=(transmitter_list, neighborlist, 4, 4 * (total_possibilities // num_jobs), 5 * (total_possibilities // num_jobs)))
     job_5 = mp.Process(target=worker_function, args=(transmitter_list, neighborlist, 5, 5 * (total_possibilities // num_jobs), 6 * (total_possibilities // num_jobs)))
     job_6 = mp.Process(target=worker_function, args=(transmitter_list, neighborlist, 6, 6 * (total_possibilities // num_jobs), 7 * (total_possibilities // num_jobs)))
-    job_7 = mp.Process(target=worker_function, args=(transmitter_list, neighborlist, 7, 7 * (total_possibilities // num_jobs), 8 * (total_possibilities // num_jobs)))
+    job_7 = mp.Process(target=worker_function, args=(transmitter_list, neighborlist, 7, 7 * (total_possibilities // num_jobs), (total_possibilities // num_jobs)))
     job_0.start()
     job_1.start()
     job_2.start()

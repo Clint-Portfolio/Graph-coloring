@@ -1,0 +1,46 @@
+Generations: 1000
+Iterations: 10000
+Cost: 635
+Cost list: [12, 26, 27, 30, 37, 39, 41]
+Graph: DACEDAEEEAADDEAAAEEACEDEE
+Cost: 758
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: GBGFABFFFBBGGFBABFFBBFGFF
+Cost: 912
+Cost list: [16, 17, 31, 33, 36, 56, 57]
+Graph: DGDGEDBDBGGGBBGDGEBGGBBBB
+Cost: 970
+Cost list: [3, 34, 36, 39, 41, 43, 58]
+Graph: CECDBEDDDBECEDECEDDEEDCDD
+
+
+Generations: 1000
+Iterations: 1000
+Cost: 570
+Cost list: [12, 26, 27, 30, 37, 39, 41]
+Graph: ACAFGAFFFACCCFCACFFCCFGFF
+Cost: 636
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: EDECGECCCDDDECDDDCCDGCECC
+Cost: 711
+Cost list: [16, 17, 31, 33, 36, 56, 57]
+Graph: FAFAEADFFAAFEFAFADDAADFDF
+Cost: 928
+Cost list: [3, 34, 36, 39, 41, 43, 58]
+Graph: FDFBCFBBBFDDDBDFDCBDDBBBB
+
+
+Generations: 1000
+Iterations: 1000
+Cost: 570
+Cost list: [12, 26, 27, 30, 37, 39, 41]
+Graph: FACDFADDDCAFADAFADDAADFDD
+Cost: 601
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Graph: EBEADEAAAEBBBABEBAABBADAA
+Cost: 935
+Cost list: [16, 17, 31, 33, 36, 56, 57]
+Graph: BABGCAGGGAABBGACAGGAAGBGG
+Cost: 1070
+Cost list: [3, 34, 36, 39, 41, 43, 58]
+Graph: DGEFDGFFFDGDGFGDGFFGGFEFF

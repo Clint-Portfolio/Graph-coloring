@@ -4,7 +4,7 @@ Argument 2 is the algorithm
 Argument 3 is the csv file with neighboring countries/provinces
 Argument 4 is the file where the results are to be written to.
 An example would be:
-main.py random Data/ukraine_neighbor_provinces.csv random.txt
+main.py random Data/Ukraine_numbers.csv random.txt
 """
 # Add the file-structure to paths
 import os
@@ -30,11 +30,6 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
                          [19, 20, 21, 23, 36, 37, 38],
                          [16, 17, 31, 33, 36, 56, 57],
                          [3, 34, 36, 39, 41, 43, 58]]
-
-
-def print_histogram(filename):
-    print(filename)
-    pd.read_csv(filename)
 
 
 if __name__ == '__main__':
@@ -110,7 +105,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "random":
         # big list contains the letters with the random function
         big_list = []
-        for i in range(100):
+        for i in range(1000000):
                 big_list.append(random_function(countries, full_transmitter_list[:5]))
         writefile = open(sys.argv[3], "w")
 
@@ -121,12 +116,11 @@ if __name__ == '__main__':
             writefile.write(";")
             for transmitter_cost in transmitter_cost_list:
 
-                writefile.write(str(cost_from_country_list(country, transmitter_cost, full_transmitter_list[:5])))
+                writefile.write(str(cost(country, transmitter_cost, full_transmitter_list[:5])))
                 writefile.write(";")
             writefile.write(str(check_for_matching_neighbors(country, countrylist)))
             writefile.write("\n")
 
-    print_histogram(sys.argv[3])
 
 
 

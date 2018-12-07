@@ -3,7 +3,8 @@
 
 def provinces(INPUT_CSV):
     # open excel file
-    with open(INPUT_CSV, newline='') as csvfile:
+    with open(INPUT_CSV, newline='') as csvfile:        
+        
         lines = csvfile.readlines()
         # print(lines[0])
 

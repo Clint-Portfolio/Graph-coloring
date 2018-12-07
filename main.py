@@ -31,17 +31,13 @@ transmitter_cost_list = [[12, 26, 27, 30, 37, 39, 41],
                          [3, 34, 36, 39, 41, 43, 58]]
 colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange', 'pink']
 
-# def print_histogram(filename):
-#     print(filename)
-#     pd.read_csv(filename)
-
 
 if __name__ == '__main__':
 
 
     if len(sys.argv) != 4:
-        print("Usage: main.py algorithm csv_file result_filename")
-        print("Algorithms implemented are: greedy, genetic, breadthfirst and random")
+        print("Usage: main.py <algorithm> <csv_file> <result_filename>")
+        print("Algorithms implemented are: greedy, genetic, breadthfirst, depthfirst, hillclimb and random")
         exit(1)
 
     countries, neighbors = provinces(sys.argv[2])
@@ -71,18 +67,26 @@ if __name__ == '__main__':
                 writefile.write(countries[country] + " " + i[0][country] + "\n")
             writefile.write("\n\n")
 
-        print(f"\n\n{best_country[0][0]}")
-        gr = []
-        country_colors = []
-        for node in range(len(countrylist)):
-            for neighbor in countrylist[node]:
-                gr.append((node, neighbor))
-            country_colors.append(colors[full_transmitter_list.index(best_country[0][0][node])])
-        print(country_colors)
+        visualise_graph(best_country[0][0], countrylist, full_transmitter_list, colors)
 
-        graph = nx.Graph(gr)
-        nx.draw_kamada_kawai(graph, node_color=country_colors)
-        plt.show()
+    if sys.argv[1] == "hillclimb":
+        from hillclimber import hillclimb, full_hillclimb
+        generations = 10000
+        iterations = 100000
+        list_of_countries = full_hillclimb(countrylist, full_transmitter_list, transmitter_cost_list, generations, iterations)
+        writefile = open(sys.argv[3], 'a')
+        writefile.write(f"Generations: {str(generations)}\n")
+        writefile.write(f"Iterations: {str(iterations)}\n")
+        for country in range(len(list_of_countries)):
+            country_cost = cost(list_of_countries[country], transmitter_cost_list[country], full_transmitter_list)
+            print(country_cost)
+            print(list_of_countries[country])
+            writefile.write(f"Cost: {str(country_cost)}\n")
+            writefile.write(f"Cost list: {transmitter_cost_list[country]}\n")
+            graph_string = "".join(list_of_countries[country])
+            writefile.write(f"Graph: {graph_string}\n")
+
+
 
     if sys.argv[1] == "genetic":
         from genetic import genetic

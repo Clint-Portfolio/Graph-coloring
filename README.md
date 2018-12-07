@@ -83,6 +83,10 @@ Average costs valid results: 604,4
 Lowest cost (valid result): 566
 Cost list: 19, 20, 21, 23, 36, 37, 38
 
+![Ukraine random](/histogram_random_cost.png)
+
+![Ukraine random](/histogram_random_wrong_nodes.png)
+
 *Greedy:*
 
 Cost: 502

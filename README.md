@@ -99,6 +99,6 @@ Cost: 1646
 
 Cost list: [19, 20, 21, 23, 36, 37, 38]
 
-![Russia greedy](/Results/Russia_greedy.jpg)
+![Russia greedy](/Results/russia_greedy.jpg)
 
 It is noted that the greedy algorithms prefer a less deviating cost list.

@@ -132,7 +132,7 @@ It implements a hill climber technique as it memorizes the cheapest graph for ea
 
 **Ukraine:**
 
-*Random (to give an indication of the statespace of Ukraine):*
+*Random (to give an indication of the state space of Ukraine):*
 
 Valid results that are found with a N=1000.000: 5.
 Average costs valid results: 604,4
@@ -153,6 +153,16 @@ Cost list: [19, 20, 21, 23, 36, 37, 38]
 
 *Hill climber:*
 
+Generations: 1000
+Iterations: 10000
+Cost: 635
+Cost list: [12, 26, 27, 30, 37, 39, 41]
+Cost: 758
+Cost list: [19, 20, 21, 23, 36, 37, 38]
+Cost: 912
+Cost list: [16, 17, 31, 33, 36, 56, 57]
+Cost: 970
+Cost list: [3, 34, 36, 39, 41, 43, 58]
 
 
 **USA:**

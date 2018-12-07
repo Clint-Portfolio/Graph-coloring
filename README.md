@@ -48,10 +48,14 @@ The most expensive solution would be that every district has the most expensive 
 
 That would give: (most expensive transmitter) * (amount of provinces)
 
+With a N=1000.000 the most expensive solution found for Ukraine is 825, from the last cost row. This solution is not valid. 
+
 # Lower bound cost:
 The most inexpensive solution would be that every district has the least expensive transmitter.
 
 That would give: (cheapest transmitter) * (amount of provinces)
+
+With a N=1000.000 the cheapest solution found for Ukraine is 452 from the first cost row. This solution is not valid. 
 
 # The four colour theorem
 

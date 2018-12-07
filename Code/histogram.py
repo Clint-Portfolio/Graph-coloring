@@ -6,9 +6,8 @@ def histogram(filename):
 
     data = pd.read_csv(filename, sep=';', header=None)
     # print(data)
-
-    hist = data.hist(column=[1, 2, 3, 4], bins='auto', grid=False)
-
+    column_number = 3
+    hist = data.hist(column=column_number, bins=data.max(axis=0)[column_number] - data.min(axis=0)[column_number], grid=False)
 
     plt.title('Cost differental costs ')
     plt.xlabel('Costs')

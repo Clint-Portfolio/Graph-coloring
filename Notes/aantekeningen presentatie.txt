@@ -1,4 +1,4 @@
-geen uniforme titel boven iedere slide
+//geen uniforme titel boven iedere slide
 meer info
 per algoritme een uitleg (met visualisatie!)
 Histogrammen, van alle landen. 

@@ -25,14 +25,18 @@ def hillclimb(neighborlist, transmitter_list, cost_list, iterations):
 def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generations=10, iterations=100):
     from helpers import cost
     cheapest_cost_per_list = []
+    
     for cost_list in list_of_cost_lists:
         cheapest_country_cost = cost_list[-1] * len(neighborlist)
         cheapest_country = []
+        
         for iteration in range(generations):
             countrylist, cheapest_cost = hillclimb(neighborlist, transmitter_list, cost_list, iterations)
+            
             if cheapest_cost < cheapest_country_cost:
                 cheapest_country_cost = cheapest_cost
                 cheapest_country = countrylist
+        
         cheapest_cost_per_list.append(cheapest_country)
 
     # for country in range(len(cheapest_cost_per_list)):

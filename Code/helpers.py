@@ -2,23 +2,22 @@
 
 
 def provinces(INPUT_CSV):
+    
     # open excel file
     with open(INPUT_CSV, newline='') as csvfile:        
         
         lines = csvfile.readlines()
-        # print(lines[0])
-
+   
         list_provinces = []
         list_neighbors = []
-        # loop over lines to get (neighboring) provinces
+        # loop through lines to get (neighboring) provinces
         for line in lines:
+            # the csv file is splitted on ;
             split_list = line.split('; ')
             provinces = split_list[0]
-            # print(type(provinces))
 
-            # The provinces were strings and I put it in a list
+            # to save provinces in a list
             list_provinces.append(provinces)
-
             province_neigbours = split_list[1].split(', ')
             province_neigbours[-1] = province_neigbours[-1].strip()
             list_neighbors.append(province_neigbours)
@@ -27,21 +26,21 @@ def provinces(INPUT_CSV):
 
 
 def land_naar_nummer(provincies, buurlanden_nl):
-    # maakt woordenboek met provincie en indexnummer
-    # provincies_dic = {"Noord-Holland" : 0, "Zuid-Holland" : 1, "Utrecht" : 2, "Zeeland" : 3, "Noord-Brabant": 4, "Groningen" : 5, "Drente" : 6, "Friesland" : 7, "Flevoland" : 8, "Overijssel" : 9, "Gelderland" : 10, "Limburg" : 11}
+
+    # makes dictionary with province and indexnumber
     provincies_dic = {}
     index = 0
-    for provincie in provincies:
-        provincies_dic[provincie] = index
+    for province in provincies:
+        provincies_dic[province] = index
         index += 1
     buurlanden_cijfers = []
 
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer
-    for provincie in buurlanden_nl:
+    for province in buurlanden_nl:
         buurlanden_provincie = []
 
-        for buurland in provincie:
-            if buurland in provincies_dic:
+        for neighbour in provincie:
+            if neighbour in provincies_dic:
                 buurlanden_provincie.append(provincies_dic[buurland])
 
         buurlanden_cijfers.append(buurlanden_provincie)
@@ -165,7 +164,7 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
     for node in most_neighbored_countries:
         countrylist[node].changetype(transmitter_list[::-1], countrylist)
 
-    # change color of country accordingly
+    # change transmitter of country accordingly
     for i in range(starting_node, starting_node + len(countrylist)):
         if countrylist[i % len(countrylist)].trans_type is None:
             if not countrylist[i % len(countrylist)].changetype(transmitter_list, countrylist):
@@ -188,17 +187,13 @@ def check_neighbors(neighbors_of_node, transmitter_type, countrylist):
 
 
 def changetype_greedy_regular(countrylist, neighborlist, transmitter_list, node):
-    # print(f"\nNode {node}:")
     for type in transmitter_list:
         if check_neighbors(neighborlist[node], type, countrylist):
-            # print(type)
             return type
-    # print("None")
     return None
 
 
 def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neighbors=0):
-    # print(f"\n\n\nNew iteration\n\n\n")
     neighborcount = 0
     most_neighbored_countries = []
 
@@ -270,9 +265,8 @@ def countrylist_to_transmitter_amount(countrylist, transmitter_list):
 
 
 """
-A function to count the number of neighbors with the same 'color'
+A function to count the number of neighbors with the same transmitter
 """
-
 
 def check_for_matching_neighbors(countrylist, neighborlist):
     matching = 0

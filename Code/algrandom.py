@@ -11,16 +11,16 @@ from helpers import *
 import random 
 def random_function(provinces, transmitters):  
        
-        zendmast_met_land = []     
+        transmitter_country = []     
 
-        for provincie in provinces: 
-                zendmast = random.randrange(len(transmitters))
-                zendmast_met_land.append(transmitters[zendmast])
+        for province in provinces: 
+                transmitter = random.randrange(len(transmitters))
+                transmitter_country.append(transmitters[transmitter])
 
-        # print(zendmast_met_land)
-        return(zendmast_met_land)
+        return(transmitter_country)
 
 if __name__ == "__main__":
         big_list = []    
         for i in range(100000):
+                # which transmitters are used
                 big_list.append(random_function(provinces,['A', 'B', 'C', 'D', 'E']))

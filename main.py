@@ -36,6 +36,7 @@ if __name__ == '__main__':
 
     if sys.argv[1].lower() == 'histogram':
         histogram(sys.argv[2])
+        exit(0)
 
     elif len(sys.argv) != 4:
         print("Usage: main.py algorithm csv_file result_filename")
@@ -122,7 +123,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "random":
         # big list contains the letters with the random function
         big_list = []
-        for i in range(1000000):
+        for i in range(10):
                 big_list.append(random_function(countries, full_transmitter_list[:5]))
         writefile = open(sys.argv[3], "w")
 

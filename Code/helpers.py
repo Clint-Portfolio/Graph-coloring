@@ -25,27 +25,27 @@ def provinces(INPUT_CSV):
         return(list_provinces, list_neighbors)
 
 
-def land_naar_nummer(provincies, buurlanden_nl):
+def land_naar_nummer(provinces, neighbours):
 
     # makes dictionary with province and indexnumber
-    provincies_dic = {}
+    provinces_dic = {}
     index = 0
-    for province in provincies:
-        provincies_dic[province] = index
+    for province in provinces:
+        provinces_dic[province] = index
         index += 1
-    buurlanden_cijfers = []
+    neighbours_numbers = []
 
     # koppelt de provincie aan buurtlanden met het reeds gemaakte dictionary indexnummer
-    for province in buurlanden_nl:
-        buurlanden_provincie = []
+    for province in neighbours:
+        neighbours_province = []
 
-        for neighbour in provincie:
+        for neighbour in provinces:
             if neighbour in provincies_dic:
-                buurlanden_provincie.append(provincies_dic[buurland])
+                neighbours_province.append(provinces_dic[neighbour])
 
-        buurlanden_cijfers.append(buurlanden_provincie)
+        neighbours_numbers.append(neighbours_province)
 
-    return(buurlanden_cijfers)
+    return(neighbours_numbers)
 
 
 """

@@ -9,13 +9,15 @@ import csv
 from bs4 import BeautifulSoup
 from helpers import *
 import random 
-def random_function(provinces, transmitters):  
+def random_function(neighbours, transmitters):  
        
         transmitter_country = []     
 
-        for province in provinces: 
+        for neighbour in neighbours: 
                 transmitter = random.randrange(len(transmitters))
                 transmitter_country.append(transmitters[transmitter])
+                
+        print(generate_random_country(neighbours, transmitter_country))
 
         return(transmitter_country)
 

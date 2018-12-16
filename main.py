@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
     if sys.argv[1] == "hillclimb":
         from hillclimber import hillclimb, full_hillclimb
-        generations = 1
-        iterations = 10
+        generations = 10000
+        iterations = 100000
         list_of_countries = full_hillclimb(countrylist, full_transmitter_list, transmitter_cost_list, generations, iterations)
         writefile = open(sys.argv[3], 'a')
         writefile.write(f"Generations: {str(generations)}\n")

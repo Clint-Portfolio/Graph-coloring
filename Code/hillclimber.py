@@ -25,18 +25,18 @@ def hillclimb(neighborlist, transmitter_list, cost_list, iterations):
 def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generations=10, iterations=100):
     from helpers import cost
     cheapest_cost_per_list = []
-    
+
     for cost_list in list_of_cost_lists:
         cheapest_country_cost = cost_list[-1] * len(neighborlist)
         cheapest_country = []
-        
+
         for iteration in range(generations):
             countrylist, cheapest_cost = hillclimb(neighborlist, transmitter_list, cost_list, iterations)
-            
+
             if cheapest_cost < cheapest_country_cost:
                 cheapest_country_cost = cheapest_cost
                 cheapest_country = countrylist
-        
+
         cheapest_cost_per_list.append(cheapest_country)
 
     # for country in range(len(cheapest_cost_per_list)):
@@ -53,8 +53,8 @@ if __name__ == '__main__':
     colors = ['blue', 'green', 'yellow', 'red', 'purple', 'white']
     transmitter_cost_list = [[2, 4, 6, 8, 10, 12], [1, 2, 8, 10, 12, 14]]
     neighborlist = generate_triple(True)
-    list_of_countries = full_hillclimb(neighborlist, transmitter_list, transmitter_cost_list, 1000, 1000)
-    for countrylist in list_of_countries:
+    list_of_countries = full_hillclimb(neighborlist, transmitter_list, transmitter_cost_list, 10, 100)
+    for countrylist in list_of_countries[0:2]:
         print(" " + countrylist[-3], end = "")
         print("-" + countrylist[-1])
         for node in countrylist[:-3]:

@@ -2,12 +2,12 @@
 
 
 def provinces(INPUT_CSV):
-    
+
     # open excel file
-    with open(INPUT_CSV, newline='') as csvfile:        
-        
+    with open(INPUT_CSV, newline='') as csvfile:
+
         lines = csvfile.readlines()
-   
+
         list_provinces = []
         list_neighbors = []
         # loop through lines to get (neighboring) provinces
@@ -25,9 +25,9 @@ def provinces(INPUT_CSV):
         return(list_provinces, list_neighbors)
 
 
-def country_to number(provinces, neighbours):
+def country_to_number(provinces, neighbours):
     """
-        country_to_number: tranforms the country names to numbers. 
+        country_to_number: tranforms the country names to numbers.
     """
 
     # makes dictionary with province and indexnumber
@@ -43,7 +43,7 @@ def country_to number(provinces, neighbours):
         neighbours_province = []
 
         for neighbour in provinces:
-            if neighbour in provincies_dic:
+            if neighbour in provinces_dic:
                 neighbours_province.append(provinces_dic[neighbour])
 
         neighbours_numbers.append(neighbours_province)

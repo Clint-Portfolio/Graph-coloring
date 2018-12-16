@@ -16,7 +16,7 @@ sys.path.append(os.path.join(directory, "Code", ""))
 os.path.join(directory, "Data")
 os.path.join(directory, "Data", "")
 
-from helpers import provinces, country_to number, check_for_matching_neighbors
+from helpers import provinces, country_to_number, check_for_matching_neighbors
 from helpers import calculate_cost, countrylist_to_transmitter_amount
 from helpers import cost, visualise_graph
 from greedy import full_greedy
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         exit(1)
 
     countries, neighbors = provinces(sys.argv[2])
-    countrylist = country_to number(countries, neighbors)
+    countrylist = country_to_number(countries, neighbors)
 
     if sys.argv[1].lower() == 'plot':
         readfile = open(sys.argv[3], 'r')
@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
     if sys.argv[1] == "hillclimb":
         from hillclimber import hillclimb, full_hillclimb
-        generations = 10000
-        iterations = 100000
+        generations = 1
+        iterations = 10
         list_of_countries = full_hillclimb(countrylist, full_transmitter_list, transmitter_cost_list, generations, iterations)
         writefile = open(sys.argv[3], 'a')
         writefile.write(f"Generations: {str(generations)}\n")

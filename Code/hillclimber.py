@@ -44,7 +44,7 @@ def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generatio
 
 
 if __name__ == '__main__':
-    from helpers import generate_triple, generate_random_country, check_for_matching_neighbors, visualise_graph
+    from helpers import generate_triple, visualise_graph
     transmitter_list = ["A", "B", "C", "D", "E", "F"]
     colors = ['blue', 'green', 'yellow', 'red', 'purple', 'white']
     transmitter_cost_list = [[2, 4, 6, 8, 10, 12], [1, 2, 8, 10, 12, 14]]

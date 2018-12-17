@@ -19,4 +19,4 @@ def histogram(filename):
     plt.show()
 
 # To be able to run the program seperately from main
-# histogram("random.csv")
+histogram("random_valid.csv")

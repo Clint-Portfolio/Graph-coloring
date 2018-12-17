@@ -74,19 +74,19 @@ if __name__ == '__main__':
 
     if sys.argv[1] == "hillclimb":
         from hillclimber import hillclimb, full_hillclimb
-        generations = 10000
-        iterations = 100000
-        list_of_countries = full_hillclimb(countrylist, full_transmitter_list, transmitter_cost_list, generations, iterations)
+        generations = 1000
+        iterations = 500
+        list_of_countries_with_costs = full_hillclimb(countrylist, full_transmitter_list, transmitter_cost_list, generations, iterations)
         writefile = open(sys.argv[3], 'a')
         writefile.write(f"Generations: {str(generations)}\n")
         writefile.write(f"Iterations: {str(iterations)}\n")
-        for country in range(len(list_of_countries)):
-            country_cost = cost(list_of_countries[country], transmitter_cost_list[country], full_transmitter_list)
-            print(country_cost)
-            print(list_of_countries[country])
-            writefile.write(f"Cost: {str(country_cost)}\n")
-            writefile.write(f"Cost list: {transmitter_cost_list[country]}\n")
-            graph_string = "".join(list_of_countries[country])
+        for country in list_of_countries_with_costs:
+            print(country[0], country[1])
+            print(country[2])
+            print()
+            writefile.write(f"Cost: {str(country[1])}\n")
+            writefile.write(f"Cost list: {country[2]}\n")
+            graph_string = "".join(country[0])
             writefile.write(f"Graph: {graph_string}\n")
 
 

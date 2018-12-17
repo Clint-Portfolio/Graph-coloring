@@ -18,3 +18,8 @@ def histogram(filename):
     plt.ylabel('Frequentie')
 
     plt.show()
+
+# To be able to run the program seperately from main
+if __name__ == '__main__':
+
+    histogram("random_valid.csv")

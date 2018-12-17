@@ -31,7 +31,7 @@ def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generatio
     from helpers import cost
     import copy
     cheapest_cost_per_list = []
-    filename = "USA_hillclimber_costlist"
+    filename = "Russia_hillclimber_costlist"
 
     for cost_index in range(len(list_of_cost_lists)):
         cost_list = list_of_cost_lists[cost_index]

@@ -8,15 +8,13 @@ def histogram(filename):
 
     data = pd.read_csv(filename, sep=';', header=None)
 
-    # to avoid magic numbers. There are five columns (four for cost, the fifth for the wrong nodes)
+    #  there are four cost coloumns
     column_number = 3
+
     hist = data.hist(column=column_number, bins=data.max(axis=0)[column_number] - data.min(axis=0)[column_number], grid=False)
 
-    plt.title('Cost differental costs ')
-    plt.xlabel('Costs')
-    plt.ylabel('Frequency')
+    plt.title('19, 20, 21, 23, 36, 37, 38')
+    plt.xlabel('Kosten')
+    plt.ylabel('Frequentie')
 
     plt.show()
-
-# To be able to run the program seperately from main
-histogram("random_valid.csv")

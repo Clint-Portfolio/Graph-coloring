@@ -30,14 +30,14 @@ def country_to_number(provinces, neighbours):
         country_to_number: tranforms the country names to numbers.
     """
 
-    # makes dictionary with province and indexnumber
+    # Makes dictionary with province and indexnumber.
     provinces_dic = {}
     index = 0
     for province in provinces:
         provinces_dic[province] = index
         index += 1
     neighbours_numbers = []
-    # matches province with neigbours in the made dictionary with indexnumber
+    # Matches province with neigbours in the made dictionary with indexnumber.
     for province in neighbours:
         neighbours_province = []
 
@@ -62,16 +62,16 @@ class Node(object):
         self.trans_type = transmitter_type
         self.neighbors = neighbors
 
-    # check for the color of neighbors and change accordingly
+    # Check for the color of neighbors and change accordingly.
     def changetype(self, transmitter_list, nodelist):
         a = 0
         type_found = False
 
-        # iterate through colors until a suitable color has been found
+        # Iterate through colors until a suitable color has been found.
         while (a < len(transmitter_list)) or not type_found:
             type_found = True
             check_type = transmitter_list[a]
-            # check if type is a suitable type
+            # Check if type is a suitable type.
             for node in self.neighbors:
                 if nodelist[node].trans_type == check_type:
                     type_found = False
@@ -147,7 +147,7 @@ And a regular version, that uses a list of neighbors, below this version
 
 
 def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbors):
-    # from helpers import Node
+    # From helpers import Node.
     neighborcount = 0
     most_neighbored_countries = []
     countrytranslist = []
@@ -160,11 +160,11 @@ def greedy_nodes(countrylist, transmitter_list, starting_node, find_most_neighbo
         if len(node.neighbors) >= neighborcount - find_most_neighbors:
             most_neighbored_countries.append(node.name)
 
-    # country with most neighbors gets the least used color
+    # Country with most neighbors gets the least used color.
     for node in most_neighbored_countries:
         countrylist[node].changetype(transmitter_list[::-1], countrylist)
 
-    # change transmitter of country accordingly
+    # Change transmitter of country accordingly.
     for i in range(starting_node, starting_node + len(countrylist)):
         if countrylist[i % len(countrylist)].trans_type is None:
             if not countrylist[i % len(countrylist)].changetype(transmitter_list, countrylist):
@@ -197,11 +197,11 @@ def greedy_regular(neighborlist, transmitter_list, starting_node, find_most_neig
     neighborcount = 0
     most_neighbored_countries = []
 
-    # find node with the most connections
+    # Find node with the most connections.
     for node in neighborlist:
         if len(node) > neighborcount:
             neighborcount = len(node)
-    # add most neighbored countries to list
+    # Add most neighbored countries to list.
     for node in neighborlist:
         if len(node) >= neighborcount - find_most_neighbors:
             most_neighbored_countries.append(neighborlist.index(node))
@@ -275,6 +275,7 @@ def check_for_matching_neighbors(countrylist, neighborlist):
         for neighbor in neighborlist[country]:
             if countrylist[neighbor] is None:
                 pass
+
             elif neighbor > country:
                 if countrylist[country] == countrylist[neighbor]:
                     matching += 1
@@ -293,6 +294,7 @@ def generate_random_country(neighborlist, transmitter_list):
         countrylist = [None for i in range(len(neighborlist))]
         countryshuffle = list(range(len(countrylist)))
         random.shuffle(countryshuffle)
+        
         for country in countryshuffle:
             random.shuffle(transmitter_list)
             for transmitter_type in transmitter_list:

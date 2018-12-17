@@ -2,7 +2,8 @@
 # 11040548
 
 """
-A random function for the distribution of transmission frequencies in a given country
+A random function for the distribution of transmission frequencies in a given country.
+Restrictions are not implemented.
 """
 
 import csv
@@ -24,5 +25,4 @@ def random_function(neighbours, transmitters):
 if __name__ == "__main__":
         big_list = []    
         for i in range(100000):
-                # which transmitters are used
                 big_list.append(random_function(provinces,['A', 'B', 'C', 'D', 'E']))

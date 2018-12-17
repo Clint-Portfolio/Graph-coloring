@@ -38,7 +38,7 @@ This code is written in **Python3.7.1** . The necessary packages to be able to s
 The Python scrips can be found in the folder "Code", input values in the map "Data", results in "Results".
 
 ## Authors:
-Clint, Rosa
+Clint & Rosa
 AKA *Team ¯\_(ツ)_/¯'); DROP TABLE teams;--*
 
 Acknowledgments:
@@ -87,6 +87,8 @@ It is possible that our algorithms are not advanced enough to solve the four col
 This algorithm randomly inserts transmitter types in the country. It then checks the cost for each country as well as the amount of nodes that have at least 1 neighbor of the same type.
 
 This script is used to probe the state space, to give an estimate of the number of solutions, and the cost distribution.
+
+There is also a upgraded ranom algorithm. This agorithm does check for validity. 
 
 2. Greedy
 
@@ -139,13 +141,13 @@ It implements a hill climber technique as it memorizes the cheapest graph for ea
 *Random (to give an indication of the state space of Ukraine):*
 
 Valid results that are found with a N=1000.000: 5.
-Average costs valid results: 604,4
-Lowest cost (valid result): 566
-Cost list: 19, 20, 21, 23, 36, 37, 38
+
 
 ![Ukraine random](/Results/histogram_random_cost.png)
 
-![Ukraine random](/Results/histogram_random_wrong_nodes.png)
+If we only look at valid solutions of the random, then it appears that cost list: [19, 20, 21, 23, 36, 37, 38]
+is by all the solutions the cheapest. 
+It also appears that more transmitters used, means a higher mean. 
 
 *Greedy:*
 

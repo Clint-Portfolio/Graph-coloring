@@ -37,17 +37,14 @@ def country_to_number(provinces, neighbours):
         provinces_dic[province] = index
         index += 1
     neighbours_numbers = []
-
     # matches province with neigbours in the made dictionary with indexnumber
     for province in neighbours:
         neighbours_province = []
 
-        for neighbour in provinces:
+        for neighbour in province:
             if neighbour in provinces_dic:
                 neighbours_province.append(provinces_dic[neighbour])
-
         neighbours_numbers.append(neighbours_province)
-
     return(neighbours_numbers)
 
 
@@ -271,6 +268,7 @@ def countrylist_to_transmitter_amount(countrylist, transmitter_list):
 A function to count the number of neighbors with the same transmitter
 """
 
+
 def check_for_matching_neighbors(countrylist, neighborlist):
     matching = 0
     for country in range(len(countrylist)):
@@ -281,6 +279,12 @@ def check_for_matching_neighbors(countrylist, neighborlist):
                 if countrylist[country] == countrylist[neighbor]:
                     matching += 1
     return(matching)
+
+
+"""
+make comment
+"""
+
 
 def generate_random_country(neighborlist, transmitter_list):
     import random

@@ -11,7 +11,7 @@ def hillclimb(neighborlist, transmitter_list, cost_list, iterations, writefile):
         changing_node = random.randrange(len(iterating_list))
         random_color = copy.deepcopy(transmitter_list)
         random_color.remove(iterating_list[changing_node])
-
+        random.shuffle(random_color)
         for color in random_color:
             new_countrylist = copy.deepcopy(iterating_list)
             new_countrylist[changing_node] = color
@@ -31,7 +31,7 @@ def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generatio
     from helpers import cost
     import copy
     cheapest_cost_per_list = []
-    filename = "Ukraine_hillclimber"
+    filename = "USA_hillclimber_costlist"
 
     for cost_index in range(len(list_of_cost_lists)):
         cost_list = list_of_cost_lists[cost_index]
@@ -45,7 +45,8 @@ def full_hillclimb(neighborlist, transmitter_list, list_of_cost_lists, generatio
                 cheapest_cost = country_cost
                 cheapest_country = copy.deepcopy(countrylist)
                 print(cheapest_cost, "".join(cheapest_country))
-        print()
+        cheapest_cost_per_list.append([cheapest_country, cheapest_cost, list_of_cost_lists[cost_index]])
+    print()
     # for country in range(len(cheapest_cost_per_list)):
     #     print(cost(cheapest_cost_per_list[country], list_of_cost_lists[country], transmitter_list))
     #     print(cheapest_cost_per_list[country])

@@ -19,4 +19,6 @@ def histogram(filename):
     plt.show()
 
 # To be able to run the program seperately from main
-histogram("random_valid.csv")
+if __name__ == '__main__':
+
+    histogram("random_valid.csv")

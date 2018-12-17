@@ -288,6 +288,8 @@ make comment
 
 def generate_random_country(neighborlist, transmitter_list):
     import random
+    import copy
+    transmitter_list = copy.deepcopy(transmitter_list)
     countrylist = [None]
     while None in countrylist:
         countrylist = [None for i in range(len(neighborlist))]

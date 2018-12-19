@@ -8,8 +8,9 @@ def histogram(filename):
 
     data = pd.read_csv(filename, sep=';', header=None)
 
+
     #  there are four cost coloumns
-    column_number = 3
+    column_number = 2
 
     hist = data.hist(column=column_number, bins=data.max(axis=0)[column_number] - data.min(axis=0)[column_number], grid=False)
 
@@ -22,4 +23,4 @@ def histogram(filename):
 # To be able to run the program seperately from main
 if __name__ == '__main__':
 
-    histogram("random_valid.csv")
+    histogram("random_valid_resultsA_E_100000.csv")

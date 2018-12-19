@@ -12,7 +12,7 @@ def histogram(filename):
     #  there are four cost coloumns
     column_number = 2
 
-    hist = data.hist(column=column_number, bins=data.max(axis=0)[column_number] - data.min(axis=0)[column_number], grid=False)
+    data.hist(column=column_number, bins=data.max(axis=0)[column_number] - data.min(axis=0)[column_number], grid=False)
 
     plt.title('19, 20, 21, 23, 36, 37, 38')
     plt.xlabel('Kosten')
@@ -23,4 +23,4 @@ def histogram(filename):
 # To be able to run the program seperately from main
 if __name__ == '__main__':
 
-    histogram("random_valid_resultsA_E_100000.csv")
+    histogram("random_valid_resultsA_D_100000.csv")
